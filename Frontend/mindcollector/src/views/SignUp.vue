@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <h1>Sign Up</h1>
-    <input type="text" placeholder="Username" v-model="username" />
-    <input type="text" placeholder="Password" v-model="password" />
-    <input
-      type="text"
-      placeholder="Password (repeat)"
-      v-model="password_repeat"
-    />
-    <input type="button" @click="signUp" value="Sign Up" />
-    <p v-if="msg">{{ msg }}</p>
-  </div>
+  <v-app>
+    <div>
+      <h1>Sign Up</h1>
+      <input type="text" placeholder="Username" v-model="username" />
+      <input type="text" placeholder="Password" v-model="password" />
+      <input
+        type="text"
+        placeholder="Password (repeat)"
+        v-model="password_repeat"
+      />
+      <v-btn type="button" @click="signUp" value="Sign Up" />
+      <p v-if="msg">Message: {{ msg }}</p>
+    </div>
+  </v-app>
 </template>
 <script>
 import AuthService from "@/services/AuthService.js";

@@ -1,55 +1,81 @@
 <template>
-  <v-app>
-    <div :style="cssProps">
-      <div class="center">
-        <h1 style="color: white">Meine Ideen</h1>
-      </div>
-      <div id="test">
-        <div style="width: 90%">
-          <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
-        </div>
-      </div>
-    </div>
+  <v-app :style="cssProps" >
+    <v-container id="test" fill-height fluid>
+      <v-row align="center" justify="center">
+        <v-col outlined cols="6" md="4">
+          <v-card-actions>
+          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+          </v-card-actions>
+        </v-col>
+        <v-col>
+          <v-card-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
+            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
+            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
+            mollitia voluptatum at rem quaerat numquam consequatur
+            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
+            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
+            delectus libero impedit dignissimos. Labore eaque illo, facere alias
+            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
+            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
+            rem cupiditate eaque delectus?
+          </v-card-text>
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col>
+          <v-card-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
+            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
+            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
+            mollitia voluptatum at rem quaerat numquam consequatur
+            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
+            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
+            delectus libero impedit dignissimos. Labore eaque illo, facere alias
+            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
+            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
+            rem cupiditate eaque delectus?
+          </v-card-text>
+        </v-col>
+        <v-col outlined cols="6" md="4" align="right">
+          <v-card-actions>
+          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+          </v-card-actions>
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col outlined cols="6" md="4">
+          <v-card-actions>
+          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+          </v-card-actions>
+        </v-col>
+        <v-col>
+          <v-card-text>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
+            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
+            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
+            mollitia voluptatum at rem quaerat numquam consequatur
+            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
+            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
+            delectus libero impedit dignissimos. Labore eaque illo, facere alias
+            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
+            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
+            rem cupiditate eaque delectus?
+          </v-card-text>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
+
+
 <script>
-import AuthService from "@/services/AuthService.js";
-import VExpansionPanel from "../components/expansionPanel.vue";
 export default {
   data() {
     return {
-      secretMessage: "",
-      username: "",
-      items: [
-        {
-          headline: "head1",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-        {
-          headline: "head2",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-        {
-          headline: "head3",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-        {
-          headline: "head4",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-      ],
-      kategorie: [
-        { title: "kategorie1" },
-        { title: "kategorie2" },
-        { title: "kategorie3" },
-        { title: "kategorie4" },
-        { title: "kategorie5" },
-      ],
-
       cssProps: {
         backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
         backgroundPosition: "center center",
@@ -58,34 +84,33 @@ export default {
       },
     };
   },
-  components: {
-    VExpansionPanel,
-  },
+  components: {},
 
-  async created() {
-    if (!this.$store.getters.isLoggedIn) {
-      //this.$router.push('/login');
-    }
-    this.username = this.$store.getters.getUser.username;
-    this.secretMessage = await AuthService.getSecretContent();
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-      this.$router.push("/login");
-    },
-  },
+  async created() {},
+  methods: {},
 };
 </script>
 
-<style>
-.center {
-  text-align: center;
+<style scoped>
+p {
+  color: rgb(255, 255, 255);
+  max-width: 80%;
+}
+.v-card__text{
+  background-color: rgba(255, 255, 255, 0.493);
+  color: white;
+  min-width: 200px;
 }
 
-#test {
-  display: flex;
-  align-items: center;
+.v-card__actions{
   justify-content: center;
+  min-width: 200px;
+}
+
+
+
+
+#test {
+  background-color: rgba(119, 107, 107, 0);
 }
 </style>
