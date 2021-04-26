@@ -1,14 +1,6 @@
 <template>
-  <v-footer
-    app
-    absolute
-    color="primary lighten-1"
-    padless
-  >
-    <v-row
-      justify="center"
-      no-gutters
-    >
+  <v-footer app absolute color="primary lighten-1" padless>
+    <v-row justify="center" no-gutters>
       <v-btn
         v-for="item in items"
         :key="item"
@@ -20,25 +12,20 @@
       >
         {{ item.title }}
       </v-btn>
-      <v-col
-        class="primary lighten-2 py-4 text-center white--text"
-        cols="12"
-      >
+      <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
         {{ new Date().getFullYear() }} — <strong>MindCollector</strong>
       </v-col>
     </v-row>
   </v-footer>
-  
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      items: [
-        {title: "Datenschutz", to: '/datenschutz'},
-        {title: 'Impressum', to: '/impressum'}
-      ],
-      
-    }),
-  }
+export default {
+  data: () => ({
+    items: [
+      { title: "Datenschutz", to: "/datenschutz" },
+      { title: "Impressum", to: "/impressum" },
+    ],
+  }),
+};
 </script>

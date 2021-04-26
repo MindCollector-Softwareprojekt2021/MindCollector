@@ -2,47 +2,64 @@
   <v-app>
     <div :style="cssProps">
       <div class="center">
-        <h1 style="color:white">Meine Ideen</h1>
+        <h1 style="color: white">Meine Ideen</h1>
       </div>
       <div id="test">
         <div style="width: 90%">
           <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
         </div>
-        
       </div>
     </div>
   </v-app>
 </template>
 <script>
-import AuthService from '@/services/AuthService.js';
-import VExpansionPanel from '../components/expansionPanel.vue';
+import AuthService from "@/services/AuthService.js";
+import VExpansionPanel from "../components/expansionPanel.vue";
 export default {
   data() {
-    
     return {
-      secretMessage: '',
-      username: '',
+      secretMessage: "",
+      username: "",
       items: [
-          {headline: "head1", text: 'text'},
-          {headline: "head2", text: 'text'},
-          {headline: "head3", text: 'text'},
-          {headline: 'head4', text: 'text'}
-        ],
+        {
+          headline: "head1",
+          text:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+        {
+          headline: "head2",
+          text:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+        {
+          headline: "head3",
+          text:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+        {
+          headline: "head4",
+          text:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+      ],
       kategorie: [
-        {title: "kategorie1"},
-        {title: "kategorie2"}
+        { title: "kategorie1" },
+        { title: "kategorie2" },
+        { title: "kategorie3" },
+        { title: "kategorie4" },
+        { title: "kategorie5" },
       ],
 
       cssProps: {
-          backgroundImage: `url(${require('@/assets/gb.jpeg')})`,
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-          minHeight: '100%'
-        }
+        backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+        minHeight: "100%",
+      },
     };
   },
   components: {
-    VExpansionPanel
+    VExpansionPanel,
   },
 
   async created() {
@@ -54,22 +71,21 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('logout');
-      this.$router.push('/login');
-    }
-  }
+      this.$store.dispatch("logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
 <style>
-  .center {
-    text-align: center;
-  }
+.center {
+  text-align: center;
+}
 
-  #test{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-  }
+#test {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
