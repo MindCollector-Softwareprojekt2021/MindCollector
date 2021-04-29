@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import firebase from 'firebase'
-import Axios from 'axios';
+import axios from 'axios';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAT29lszc6RurNrCQBREiuFNFfhCdpXRwE",
@@ -18,8 +19,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-// set auth header
-Axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.token}`;
+axios.defaults.withCredentials = true
+axios.defaults.baseURL = '';
 
 Vue.config.productionTip = false
 

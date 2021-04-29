@@ -1,111 +1,45 @@
 <template>
-  <v-app class="bg" :style="cssProps">
-    <v-container fill-height fluid>
-      <v-row align="center" justify="center">
-        <v-col outlined cols="6" md="4">
-          <v-card-actions>
-            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
-          </v-card-actions>
-        </v-col>
-        <v-col>
-          <v-card-text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
-            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
-            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
-            mollitia voluptatum at rem quaerat numquam consequatur
-            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
-            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
-            delectus libero impedit dignissimos. Labore eaque illo, facere alias
-            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
-            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
-            rem cupiditate eaque delectus?
-          </v-card-text>
-        </v-col>
-      </v-row>
-      <v-row align="center" justify="center">
-        <v-col>
-          <v-card-text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
-            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
-            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
-            mollitia voluptatum at rem quaerat numquam consequatur
-            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
-            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
-            delectus libero impedit dignissimos. Labore eaque illo, facere alias
-            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
-            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
-            rem cupiditate eaque delectus?
-          </v-card-text>
-        </v-col>
-        <v-col outlined cols="6" md="4" align="right">
-          <v-card-actions>
-            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
-          </v-card-actions>
-        </v-col>
-      </v-row>
-      <v-row align="center" justify="center">
-        <v-col outlined cols="6" md="4">
-          <v-card-actions>
-            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
-          </v-card-actions>
-        </v-col>
-        <v-col>
-          <v-card-text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            consectetur deserunt asperiores, iste corrupti veritatis nesciunt
-            laborum nulla quaerat maxime doloremque vitae excepturi unde sunt,
-            reiciendis enim? Facilis, provident labore. Nemo animi consequuntur
-            mollitia voluptatum at rem quaerat numquam consequatur
-            exercitationem illum, placeat illo delectus quis? Nihil hic cumque
-            accusantium corporis! Quibusdam ipsa aliquid, quaerat dolorem
-            delectus libero impedit dignissimos. Labore eaque illo, facere alias
-            cum ipsam excepturi dolorem vel qui deleniti tempora amet quae quos,
-            minus eos. Error molestias quod velit dolor nostrum autem, incidunt
-            rem cupiditate eaque delectus?
-          </v-card-text>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-carousel
+    cycle
+    height=100%
+    hide-delimiter-background
+    show-arrows-on-hover
+    class="fill-height"
+  >
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+    >
+        <v-row
+          class="fill-height"
+          align="center"
+          justify="center"
+        >
+          <div class="display-3">
+            {{ slide }} Slide
+          </div>
+        </v-row>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
-
 <script>
-export default {
-  data() {
-    return {
-      cssProps: {
-        backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
-        backgroundPosition:"center center",
-        backgroundSize: "cover",
-        minHeight: "100%",
-        backgroundAttachment: "fixed",
-        backgroundRepeat: "no-repeat",
-      },
-    };
-  },
-  
-  
-};
+  export default {
+    data () {
+      return {
+        items: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+        ],
+      }
+    },
+  }
 </script>
-
-<style scoped>
-p {
-  color: rgb(255, 255, 255);
-  max-width: 80%;
-}
-.v-card__text {
-  background-color: rgba(255, 255, 255, 0.493);
-  color: white;
-  min-width: 200px;
-}
-
-.v-card__actions {
-  justify-content: center;
-  min-width: 200px;
-}
-
-
-</style>

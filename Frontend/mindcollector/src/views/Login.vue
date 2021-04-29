@@ -1,41 +1,91 @@
 <template>
   <v-app>
-    <div>
-      <h1>Login</h1>
-      <input type="text" placeholder="Username" v-model="username" />
-      <input type="text" placeholder="Password" v-model="password" />
-      <input type="button" @click="login" value="Login" />
-      <p v-if="msg">{{ msg }}</p>
+    <div class="login">
+      <div>
+        <form @submit.prevent="submit">
+          <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" v-model="form.username" />
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" v-model="form.password" />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        <p v-if="showError" id="error">Username or Password is incorrect</p>
+      </div>
+      <div>
+        <p>Noch nicht Registriert?</p>
+        <v-btn>
+          <a href="/register"> Register</a>
+        </v-btn>
+      </div>
     </div>
   </v-app>
 </template>
+
 <script>
-import AuthService from "@/services/AuthService.js";
+import { mapActions } from "vuex";
 export default {
+  name: "Login",
+  components: {},
   data() {
     return {
-      username: "",
-      password: "",
-      msg: "",
+      form: {
+        username: "",
+        password: "",
+      },
+      showError: false,
     };
   },
   methods: {
-    async login() {
+    ...mapActions(["LogIn"]),
+    async submit() {
+      const User = new FormData();
+      User.append("username", this.form.username);
+      User.append("password", this.form.password);
       try {
-        const credentials = {
-          username: this.username,
-          password: this.password,
-        };
-        const response = await AuthService.login(credentials);
-        this.msg = response.msg;
-        const token = response.token;
-        const user = response.user;
-        this.$store.dispatch("login", { token, user });
-        //this.$router.push('/');
+        await this.LogIn(User);
+        this.$router.push("/sammlung");
+        this.showError = false;
       } catch (error) {
-        this.msg = error.response.data.msg;
+        this.showError = true;
       }
     },
   },
 };
 </script>
+
+<style scoped>
+* {
+  box-sizing: border-box;
+}
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+input {
+  margin: 5px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  padding: 10px;
+  border-radius: 30px;
+}
+#error {
+  color: red;
+}
+.login {
+  text-align: center;
+  padding: 25px;
+}
+</style>

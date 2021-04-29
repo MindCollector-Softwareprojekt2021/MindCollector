@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import SignUp from "../views/SignUp.vue"
+import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
 import Sammlung from "../views/Sammlung.vue"
 
@@ -14,14 +14,16 @@ const routes = [
     component: Home
   },
   {
-    path: "/sign-up",
-    name: "sign-up",
-    component: SignUp
+    path: '/register',
+    name: "Register",
+    component: Register,
+    meta: { guest: true },
   },
   {
-    path: "/login",
-    name: "login",
-    component: Login
+    path: '/login',
+    name: "Login",
+    component: Login,
+    meta: { guest: true },
   },
   {
     path: "/sammlung",
