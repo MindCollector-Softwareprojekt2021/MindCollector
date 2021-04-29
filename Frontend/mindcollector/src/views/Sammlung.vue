@@ -1,25 +1,37 @@
 <template>
-  <v-app>
-    <div :style="cssProps">
-      <div class="center">
-        <h1 style="color: white">Meine Ideen</h1>
+  <v-app class="bg" :style="cssProps">
+    <div>
+      <div><h1 style="color: white">Meine Notizen</h1></div>
+      <div id="btn-kat" >
+        <v-tooltip left >
+          <template v-slot:activator="{ on, attrs }" id="test">
+            <v-fab-transition>
+              <v-btn
+                v-show="!hidden"
+                color="green"
+                dark
+                app
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-fab-transition>
+          </template>
+          <span>TOOLTIP</span>
+        </v-tooltip>
       </div>
-      <div id="test">
-        <div style="width: 90%">
-          <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
-        </div>
-      </div>
+    </div>
+    <div id="expan">
+      <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
     </div>
   </v-app>
 </template>
 <script>
-import AuthService from "@/services/AuthService.js";
 import VExpansionPanel from "../components/expansionPanel.vue";
 export default {
   data() {
     return {
-      secretMessage: "",
-      username: "",
       items: [
         {
           headline: "head1",
@@ -32,55 +44,50 @@ export default {
             "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
         },
         {
-          headline: "head3",
+          headline: "head2",
           text:
             "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-        {
-          headline: "head4",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
+        }
       ],
       kategorie: [
         { title: "kategorie1" },
         { title: "kategorie2" },
-        { title: "kategorie3" },
-        { title: "kategorie4" },
-        { title: "kategorie5" },
+        { title: "kategorie3" }
       ],
-
       cssProps: {
         backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
-        backgroundPosition: "center center",
+        backgroundPosition:"center center",
         backgroundSize: "cover",
         minHeight: "100%",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
       },
     };
   },
   components: {
     VExpansionPanel,
   },
-
-  async created() {
-    if (!this.$store.getters.isLoggedIn) {
-      //this.$router.push('/login');
-    }
-    this.username = this.$store.getters.getUser.username;
-    this.secretMessage = await AuthService.getSecretContent();
-  },
-  methods: {
-    logout() {
-      
-    },
-  },
+  
 };
 </script>
 
-<style>
-.center {
+
+
+<style scoped>
+
+
+h1{
   text-align: center;
 }
 
+#btn-kat{
+  text-align: right;
+  margin: 0 5%;
+  padding: 10px;
+}
 
+#expan {
+  margin: 0 5%;
+  padding: 10px;
+}
 </style>

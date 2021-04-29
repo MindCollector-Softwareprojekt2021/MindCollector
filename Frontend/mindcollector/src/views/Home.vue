@@ -1,10 +1,10 @@
 <template>
-  <v-app :style="cssProps" >
-    <v-container id="test" fill-height fluid>
+  <v-app class="bg" :style="cssProps">
+    <v-container fill-height fluid>
       <v-row align="center" justify="center">
         <v-col outlined cols="6" md="4">
           <v-card-actions>
-          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
           </v-card-actions>
         </v-col>
         <v-col>
@@ -41,14 +41,14 @@
         </v-col>
         <v-col outlined cols="6" md="4" align="right">
           <v-card-actions>
-          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
           </v-card-actions>
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
         <v-col outlined cols="6" md="4">
           <v-card-actions>
-          <img src="https://via.placeholder.com/500x300" alt="palceholder" />
+            <img src="https://via.placeholder.com/500x300" alt="palceholder" />
           </v-card-actions>
         </v-col>
         <v-col>
@@ -78,16 +78,16 @@ export default {
     return {
       cssProps: {
         backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
-        backgroundPosition: "center center",
+        backgroundPosition:"center center",
         backgroundSize: "cover",
         minHeight: "100%",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
       },
     };
   },
-  components: {},
-
-  async created() {},
-  methods: {},
+  
+  
 };
 </script>
 
@@ -96,21 +96,16 @@ p {
   color: rgb(255, 255, 255);
   max-width: 80%;
 }
-.v-card__text{
+.v-card__text {
   background-color: rgba(255, 255, 255, 0.493);
   color: white;
   min-width: 200px;
 }
 
-.v-card__actions{
+.v-card__actions {
   justify-content: center;
   min-width: 200px;
 }
 
 
-
-
-#test {
-  background-color: rgba(119, 107, 107, 0);
-}
 </style>
