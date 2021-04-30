@@ -1,26 +1,72 @@
 <template>
-<v-app app>
   <div class="register">
-      <div>
-          <form @submit.prevent="submit">
-            <div>
-              <label for="username">Username:</label>
-              <input type="text" name="username" v-model="form.username">
-            </div>
-            <div>
-              <label for="full_name">Full Name:</label>
-              <input type="text" name="full_name" v-model="form.full_name">
-            </div>
-            <div>
-              <label for="password">Password:</label>
-              <input type="password" name="password" v-model="form.password">
-            </div>
-            <button type="submit"> Submit</button>
-          </form>
-      </div>
-      <p v-if="showError" id="error">Username already exists</p>
+    <v-form @submit.prevent="submit">
+      <v-container fluid>
+        <v-row>
+          <v-col>
+            <v-text-field
+              v-model="title"
+              :rules="[rules.required, rules.counter]"
+              label="Username"
+              counter
+              outlined
+              maxlength="50"
+            ></v-text-field>
+            <v-text-field
+              v-model="title"
+              :rules="[rules.required, rules.counter]"
+              label="Full Name"
+              counter
+              outlined
+              maxlength="50"
+            ></v-text-field>
+            <v-text-field
+              v-model="form.full_name"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="show1 ? 'text' : 'password'"
+              name="input-10-1"
+              label="Passwort"
+              hint="At least 8 characters"
+              counter
+              outlined
+              @click:append="show1 = !show1"
+            ></v-text-field>
+            <v-select
+              :items="sf1"
+              label="Sicherheitsfrage 1"
+              dense
+              outlined
+            ></v-select>
+            <v-text-field
+              v-model="message4"
+              label="Antwort Sicherheitsfrage 1"
+              outlined
+              clearable
+            ></v-text-field>
+            <v-select
+              :items="sf2"
+              label="Sicherheitsfrage 2"
+              dense
+              outlined
+            ></v-select>
+            <v-text-field
+              v-model="message4"
+              label="Antwort Sicherheitsfrage 2"
+              outlined
+              clearable
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn type="submit">Submit</v-btn>
+          </v-col>
+        </v-row>
+        <p v-if="showError" id="error">Username already exists</p>
+      </v-container>
+    </v-form>
   </div>
-  </v-app>
 </template>
 
 <script>
@@ -30,12 +76,20 @@ export default {
   components: {},
   data() {
     return {
+      show1: false,
       form: {
         username: "",
         full_name: "",
         password: "",
       },
-      showError: false
+      sf1:["Wo wurdest du geboren?", "Wie heißt dein Haustier?"],
+      sf2:["Was ist dein Lieblingsessen", "Was ist deine Lieblingszahl"],
+      showError: false,
+      rules: {
+        required: (value) => !!value || "Required.",
+        counter: (value) => value.length <= 20 || "Max 20 characters",
+        min: (v) => v.length >= 8 || "Min 8 characters",
+      },
     };
   },
   methods: {
@@ -44,9 +98,9 @@ export default {
       try {
         await this.Register(this.form);
         this.$router.push("/login");
-        this.showError = false
+        this.showError = false;
       } catch (error) {
-        this.showError = true
+        this.showError = true;
       }
     },
   },
@@ -57,33 +111,27 @@ export default {
 * {
   box-sizing: border-box;
 }
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-button[type=submit] {
-  background-color: #4CAF50;
+.v-btn[type="submit"] {
+  background-color: #4caf50;
   color: white;
   padding: 12px 20px;
   cursor: pointer;
-  border-radius:30px;
 }
-button[type=submit]:hover {
-  background-color: #45a049;
-}
-input {
-  margin: 5px;
-  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-  padding:10px;
-  border-radius:30px;
+.v-btn[type="submit"]:hover {
+  background-color: #4caf50;
 }
 #error {
   color: red;
 }
-.register{
-  
+.register {
   text-align: center;
-  padding:25px;
+  padding: 70px 500px;
+}
 
+@media screen and (max-width: 700px) {
+  .register {
+    text-align: center;
+    padding: 20px 0;
+  }
 }
 </style>

@@ -1,24 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import Axios from 'axios';
-import createPersistedState from 'vuex-persistedstate';
+import Vuex from 'vuex';
+import Vue from 'vue';
+import createPersistedState from "vuex-persistedstate";
+import auth from './modules/auth';
 
-Vue.use(Vuex)
-
-const getDefaultState = () => {
-  return {
-    token: '',
-    user: {}
-  };
-};
-
-
+// Load Vuex
+Vue.use(Vuex);
+// Create store
 export default new Vuex.Store({
-  strict: true,
-  plugins: [createPersistedState()],
-  state: getDefaultState(),
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+  modules: {
+    auth
+  },
+  plugins: [createPersistedState()]
 });

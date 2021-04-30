@@ -73,6 +73,7 @@ export default {
 
 
 <style scoped>
+
 .notizen {
   margin: 2rem;
   text-align: center;

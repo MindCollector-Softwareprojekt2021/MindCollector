@@ -1,18 +1,29 @@
 <template>
-  <v-app>
     <div class="login">
       <div>
-        <form @submit.prevent="submit">
+        <v-form @submit.prevent="submit">
           <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" v-model="form.username" />
+            <v-text-field
+              label="Username"
+              placeholder="Username123"
+              outlined
+              v-model="form.username"
+              type="text"
+              name="username"
+            ></v-text-field>
           </div>
           <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" v-model="form.password" />
+            <v-text-field
+              label="Password"
+              placeholder="IchBinSicher!"
+              outlined
+              type="password"
+              name="password"
+              v-model="form.password"
+            ></v-text-field>
           </div>
           <button type="submit">Submit</button>
-        </form>
+        </v-form>
         <p v-if="showError" id="error">Username or Password is incorrect</p>
       </div>
       <div>
@@ -22,7 +33,6 @@
         </v-btn>
       </div>
     </div>
-  </v-app>
 </template>
 
 <script>
@@ -87,5 +97,12 @@ input {
 .login {
   text-align: center;
   padding: 25px;
+}
+
+@media screen and (max-width: 700px) {
+  .login {
+  text-align: center;
+  padding: 40px 0;
+}
 }
 </style>

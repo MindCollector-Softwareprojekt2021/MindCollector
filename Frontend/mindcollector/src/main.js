@@ -3,24 +3,24 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
-import firebase from 'firebase'
 import axios from 'axios';
 
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.withCredentials = false;
+axios.defaults.baseURL = 'https://mezzox.pythonanywhere.com';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAT29lszc6RurNrCQBREiuFNFfhCdpXRwE",
-  authDomain: "mindcollector-64402.firebaseapp.com",
-  projectId: "mindcollector-64402",
-  storageBucket: "mindcollector-64402.appspot.com",
-  messagingSenderId: "458577431446",
-  appId: "1:458577431446:web:33f64bf2712d040a2a2bb7",
-  measurementId: "G-475RM0HYH9"
-};
+axios.interceptors.response.use(undefined, function (error) {
+  if (error) {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+  
+        originalRequest._retry = true;
+        store.dispatch('LogOut')
+        return router.push('/login')
+    }
+  }
+})
 
-firebase.initializeApp(firebaseConfig);
-
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = '';
 
 Vue.config.productionTip = false
 
