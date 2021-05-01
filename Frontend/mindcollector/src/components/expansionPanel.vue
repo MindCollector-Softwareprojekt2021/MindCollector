@@ -1,7 +1,7 @@
 <template>
-  <v-expansion-panels class="v-expansion-panels">
+  <v-expansion-panels class="v-expansion-panels"  focusable accordion>
     <v-expansion-panel v-for="k in kat" :key="k.headline">
-      <v-expansion-panel-header>
+      <v-expansion-panel-header color="rgb(240, 240, 240)">
         <span>{{ k.title }}</span>
 
         <span id="btn-plus">
@@ -26,7 +26,7 @@
           </v-tooltip>
         </span>
       </v-expansion-panel-header>
-      <v-expansion-panel-content>
+      <v-expansion-panel-content color="rgb(247, 247, 247)">
         <Notiz v-for="vc in data" :key="vc" :data="vc"> </Notiz>
       </v-expansion-panel-content>
     </v-expansion-panel>

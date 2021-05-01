@@ -128,7 +128,7 @@ export default {
   padding: 70px 500px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
   .register {
     text-align: center;
     padding: 20px 0;

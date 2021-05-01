@@ -31,7 +31,8 @@ const routes = [
     path: "/sammlung",
     name: "Sammlung",
     component: Sammlung,
-    meta: { requiresAuth: true },
+    meta: { guest: true },
+    //meta: { requiresAuth: true },
   },
 ]
 

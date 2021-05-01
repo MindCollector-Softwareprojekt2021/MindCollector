@@ -25,6 +25,7 @@
     <div id="expan">
       <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
     </div>
+    
   </div>
 </template>
 <script>
@@ -35,18 +36,12 @@ export default {
       items: [
         {
           headline: "head1",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+          
+          text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque dicta, rerum officia sunt eos fuga quae, nihil doloremque perferendis veritatis eveniet dolore ipsam aperiam hic aut laborum commodi asperiores fugiat! Iure error quo magni aspernatur vitae deserunt saepe voluptas sunt unde officiis mollitia reprehenderit praesentium dignissimos quis, placeat dolore id nobis ad debitis. Ipsa, inventore? Numquam recusandae accusantium inventore possimus! Non nihil fugit, quibusdam enim natus, maiores fugiat iure consectetur repellat error alias dolorum dignissimos suscipit vero tempore laboriosam. Deleniti nemo, quaerat vero doloribus earum fuga odio explicabo nihil atque",
         },
         {
-          headline: "head2",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-        },
-        {
-          headline: "head2",
-          text:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+          headline: "head1",
+          text: "text2",
         },
       ],
       kategorie: [
@@ -73,7 +68,6 @@ export default {
 
 
 <style scoped>
-
 .notizen {
   margin: 2rem;
   text-align: center;
@@ -81,7 +75,7 @@ export default {
 }
 
 h1 {
-  color: white;
+  color: rgb(112, 112, 112);
   text-decoration: underline;
   text-transform: uppercase;
   text-align: center;
@@ -91,7 +85,7 @@ h1 {
 
 .btn-kat {
   text-align: right;
-  padding: 2rem 0 0 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 700px) {
@@ -104,5 +98,4 @@ h1 {
     padding: 1rem 0 0 0;
   }
 }
-
 </style>
