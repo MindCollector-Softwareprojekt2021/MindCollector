@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 19c                           */
-/* Created on:     01.05.2021 18:10:16                          */
+/* Created on:     04.05.2021 12:39:36                          */
 /*==============================================================*/
 
 
@@ -38,7 +38,7 @@ create table EINTRAG (
    KATEGORIE_ID         INTEGER               not null,
    EINTRAG_TITEL        CHAR(50)              not null,
    EINTRAG_BESCHREIBUNG CLOB                  not null,
-   AUDIO_BEZEICHNUNG    CHAR(50),
+   AUDIO                BLOB,
    AUDIOTEXT            CLOB,
    BILD                 BLOB,
    constraint PK_EINTRAG primary key (EINTRAG_ID)
