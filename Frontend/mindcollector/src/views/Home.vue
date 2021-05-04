@@ -29,6 +29,16 @@ export default {
           src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
         },
       ],
+      
+      cssProps: {
+        backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
+        backgroundColor: "white",
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+        minHeight: "100%",
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+      },
     };
   },
 };

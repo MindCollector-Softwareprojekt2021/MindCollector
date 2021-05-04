@@ -7,7 +7,7 @@ import axios from 'axios';
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.withCredentials = false;
-axios.defaults.baseURL = 'https://mezzox.pythonanywhere.com';
+axios.defaults.baseURL = 'http://127.0.0.1:5000/';
 
 axios.interceptors.response.use(undefined, function (error) {
   if (error) {

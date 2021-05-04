@@ -26,24 +26,6 @@ export default {
     Footer,
     NavBar,
   },
-  data() {
-    return {
-      items: [
-        { title: "Home", to: "/", icon: "mdi-domain" },
-        { title: "Meine Notizen", to: "/sammlung", icon: "" },
-        { title: "Login", to: "/login", icon: "" },
-      ],
-      cssProps: {
-        //backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
-        backgroundColor: "white",
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-        minHeight: "100%",
-        backgroundAttachment: "fixed",
-        backgroundRepeat: "no-repeat",
-      },
-    };
-  },
   computed: {
     isLoggedIn: function () {
       return this.$store.getters.isAuthenticated;

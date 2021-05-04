@@ -26,7 +26,7 @@
               :rules="[rules.required, rules.min]"
               :type="show1 ? 'text' : 'password'"
               name="input-10-1"
-              label="Passwort"
+              label="Password"
               hint="At least 8 characters"
               counter
               outlined
@@ -82,8 +82,8 @@ export default {
         full_name: "",
         password: "",
       },
-      sf1:["Wo wurdest du geboren?", "Wie heißt dein Haustier?"],
-      sf2:["Was ist dein Lieblingsessen", "Was ist deine Lieblingszahl"],
+      sf1: ["Wo wurdest du geboren?", "Wie heißt dein erstes Haustier?"],
+      sf2: ["Was ist dein Lieblingsessen", "Was ist deine Lieblingszahl"],
       showError: false,
       rules: {
         required: (value) => !!value || "Required.",

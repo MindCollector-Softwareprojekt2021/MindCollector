@@ -3,8 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
-import Sammlung from "../views/Sammlung.vue"
+import MeineNotizen from "../views/MeineNotizen.vue"
 import store from "../store";
+import addNotiz from "../views/addNotiz.vue"
+
 
 Vue.use(VueRouter)
 
@@ -28,9 +30,16 @@ const routes = [
     meta: { guest: true },
   },
   {
-    path: "/sammlung",
-    name: "Sammlung",
-    component: Sammlung,
+    path: "/meine-notizen",
+    name: "Meine Notizen",
+    component: MeineNotizen,
+    meta: { guest: true },
+    //meta: { requiresAuth: true },
+  },
+  {
+    path: "/add",
+    name: "add",
+    component: addNotiz,
     meta: { guest: true },
     //meta: { requiresAuth: true },
   },
@@ -53,18 +62,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.guest)) {
-    if (store.getters.isAuthenticated) {
-      next("/sammlung");
-      return;
-    }
-    next();
-  } else {
-    next();
-  }
-});
-
 
 export default router

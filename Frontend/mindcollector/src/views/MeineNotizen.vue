@@ -33,6 +33,7 @@ import VExpansionPanel from "../components/expansionPanel.vue";
 export default {
   data() {
     return {
+      user: '',
       items: [
         {
           headline: "head1",
@@ -49,14 +50,6 @@ export default {
         { title: "kategorie2" },
         { title: "kategorie3" },
       ],
-      cssProps: {
-        backgroundImage: `url(${require("@/assets/gb.jpeg")})`,
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-        minHeight: "100%",
-        backgroundAttachment: "fixed",
-        backgroundRepeat: "no-repeat",
-      },
     };
   },
   components: {

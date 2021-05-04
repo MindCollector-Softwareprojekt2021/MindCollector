@@ -50,10 +50,12 @@ export default {
   methods: {
     ...mapActions(["LogIn"]),
     async submit() {
-      const User = new FormData();
-      User.append("username", this.form.username);
-      User.append("password", this.form.password);
+      const User = {
+          username: this.form.username,
+          password: this.form.password
+        };
       try {
+        console.log(User);
         await this.LogIn(User);
         this.$router.push("/sammlung");
         this.showError = false;

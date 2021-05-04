@@ -9,8 +9,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-fab-transition>
                 <v-btn
-                  
-                  @click.stop="addNotiz(k)"
+                  @click.stop="addNotiz(k.title)"
                   color="green"
                   dark
                   app
@@ -46,6 +45,8 @@ export default {
     },
     addNotiz(kategorie){
         console.log("add Notiz to:" + kategorie)
+        this.$store.commit('setKat', kategorie)
+        this.$router.push("/add");
     },
 }
 };

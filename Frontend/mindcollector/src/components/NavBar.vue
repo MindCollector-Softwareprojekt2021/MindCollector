@@ -1,7 +1,7 @@
 <template>
   <v-tabs id="nav" centered mobile-breakpoint dark>
     <v-tab to="/"><v-icon dense>mdi-domain</v-icon> Home</v-tab>
-    <v-tab to="/sammlung"><v-icon dense> mdi-message-text </v-icon>Meine Notizen</v-tab>
+    <v-tab to="/meine-notizen"><v-icon dense> mdi-message-text </v-icon>Meine Notizen</v-tab>
     <v-tab v-if="isLoggedIn" @click="logout">Logout</v-tab>
     <v-tab v-else to="/login">Login</v-tab>
   </v-tabs>

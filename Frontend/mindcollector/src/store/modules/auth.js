@@ -3,12 +3,14 @@ import axios from "axios";
 const state = {
   user: null,
   posts: null,
+  selectedKat: '',
 };
 
 const getters = {
   isAuthenticated: (state) => !!state.user,
   StatePosts: (state) => state.posts,
   StateUser: (state) => state.user,
+  SelectKat: (state) => state.selectedKat,
 };
 
 const actions = {
@@ -21,11 +23,8 @@ const actions = {
   },
 
   async LogIn({commit}, user) {
-    await axios.post("/login", user, {
-      headers: {
-        Authorization: 'Bearer ' + varToken
-      }
-    });
+    let test = await axios.post("login", user);
+    console.log(test.data)
     await commit("setUser", user.get("username"));
   },
 
@@ -48,6 +47,10 @@ const actions = {
 const mutations = {
   setUser(state, username) {
     state.user = username;
+  },
+
+  setKat(state, kat) {
+    state.selectedKat = kat;
   },
 
   setPosts(state, posts) {
