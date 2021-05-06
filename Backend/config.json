@@ -1,0 +1,10 @@
+{
+    "mysqlHostIP":"localhost",
+    "mysqlUser":"root",
+    "mysqlPW":"halum.24",
+    "mysqlDatabase":"mindcollector_database",
+    "flaskHostIP":"0.0.0.0",
+    "appPort":"3306",
+    "debug":false,
+    "threaded":true
+}

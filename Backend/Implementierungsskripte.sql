@@ -37,9 +37,9 @@ create table EINTRAG (
    EINTRAG_ID           INTEGER               not null,
    KATEGORIE_ID         INTEGER               not null,
    EINTRAG_TITEL        CHAR(50)              not null,
-   EINTRAG_BESCHREIBUNG CLOB                  not null,
+   EINTRAG_BESCHREIBUNG TEXT                  not null,
    AUDIO                BLOB,
-   AUDIOTEXT            CLOB,
+   AUDIOTEXT            TEXT,
    BILD                 BLOB,
    constraint PK_EINTRAG primary key (EINTRAG_ID)
 );
@@ -93,10 +93,10 @@ create table USERACCOUNT (
    NACHNAME             CHAR(50)              not null,
    EMAIL                CHAR(50)              not null,
    PASSWORT             CHAR(50)              not null,
-   SICHERHEITSFRAGE1    CLOB                  not null,
-   SICHERHEITSANTWORT1  CLOB                  not null,
-   SICHERHEITSFRAGE2    CLOB                  not null,
-   SICHERHEITSANTWORT2  CLOB                  not null,
+   SICHERHEITSFRAGE1    TEXT                  not null,
+   SICHERHEITSANTWORT1  TEXT                  not null,
+   SICHERHEITSFRAGE2    TEXT                  not null,
+   SICHERHEITSANTWORT2  TEXT                  not null,
    CREATED_AT           DATE,
    constraint PK_USERACCOUNT primary key (USER_ID)
 );
