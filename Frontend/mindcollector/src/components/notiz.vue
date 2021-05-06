@@ -1,10 +1,10 @@
 <template>
   <v-card outlined light elevation="24">
     <v-card-title>
-      {{ data.headline }}
+      {{ notiz.title }}
     </v-card-title>
     <v-card-text class="v-cardtext">
-      {{ data.text }}
+      {{ notiz.text }}
     </v-card-text>
 
     <v-card-actions>
@@ -20,11 +20,11 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ data.headline }}</span>
+                <span class="headline">{{ notiz.title }}</span>
               </v-card-title>
               <v-card-text>
                 <span>
-                  {{ data.text }}
+                  {{ notiz.text }}
                 </span>
               </v-card-text>
               <v-card-actions>
@@ -53,7 +53,7 @@ export default {
         dialog: false,
       }
     },
-  props: ["data"],
+  props: ["notiz"],
 };
 </script>
 

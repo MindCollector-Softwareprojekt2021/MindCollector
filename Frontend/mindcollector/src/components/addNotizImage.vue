@@ -1,13 +1,13 @@
 <template>
   <div class="field">
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form ref="form" lazy-validation>
       <v-text-field
         :value="kat"
         label="Kategorie"
         outlined
         disabled
       ></v-text-field>
-      <v-text-field v-model="titel" label="Titel" required></v-text-field>
+      <v-text-field label="Titel" required></v-text-field>
       <v-checkbox
         v-model="enabled"
         label="Aktivieren, falls du KEINE Bild zu Text Analyse möchtest"
@@ -33,14 +33,17 @@ export default {
       enabled: false,
     };
   },
-  mounted: function () {
-    this.kat = this.$store.getters.SelectKat;
-  },
 };
 </script>
 
 <style scoped>
-.v-form {
-  padding: 20px 300px;
+.field {
+  padding: 100px 300px;
+}
+
+@media screen and (max-width: 700px) {
+  .field {
+    padding: 30px;
+  }
 }
 </style>

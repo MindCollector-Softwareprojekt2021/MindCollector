@@ -1,29 +1,50 @@
 {
-  "users": [{ "id": 1, "username": "test", "password": "test1234" }, { "id": 2, "username": "max", "password": "maxmaxmax" }],
-  "notizen": [
+  "meineNotizen":[
     {
-      "kategorie": "kategorie1",
-      "notizen": [
+      "id":1,
+      "katTitle":"Arbeit",
+      "listNote":[
         {
-          "titel": "titel1",
-          "text": "text1"
+          "id":1,
+          "title":"meine erste Notiz",
+          "text":"Super, das ist meine erste Notiz"
         },
         {
-          "titel": "titel1",
-          "text": "text1"
+          "id":2,
+          "title":"meine zweite Notiz",
+          "text":"Super, das ist meine zweite Notiz"
         },
         {
-          "titel": "titel1",
-          "text": "text1"
+          "id":3,
+          "title":"meine dritte Notiz",
+          "text":"Super, das ist meine dritte Notiz"
         }
       ]
     },
     {
-      "kategorie": "kategorie2",
-      "notizen": [
+      "id":2,
+      "katTitle":"Hobby",
+      "listNote":[
         {
-          "titel": "titel1",
-          "text": "text1"
+          "id":1,
+          "title":"meine erste Notiz",
+          "text":"Super, das ist meine erste Notiz"
+        },
+        {
+          "id":2,
+          "title":"meine zweite Notiz",
+          "text":"Super, das ist meine zweite Notiz"
+        }
+      ]
+    },
+    {
+      "id":3,
+      "katTitle":"sonstiges",
+      "listNote":[
+        {
+          "id":1,
+          "title":"meine erste Notiz",
+          "text":"Super, das ist meine erste Notiz"
         }
       ]
     }

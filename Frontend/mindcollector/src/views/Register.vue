@@ -60,7 +60,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-btn type="submit">Submit</v-btn>
+            <v-btn type="submit" @click="submit()">Submit</v-btn>
           </v-col>
         </v-row>
         <p v-if="showError" id="error">Username already exists</p>
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+
 export default {
   name: "Register",
   components: {},
@@ -92,18 +92,7 @@ export default {
       },
     };
   },
-  methods: {
-    ...mapActions(["Register"]),
-    async submit() {
-      try {
-        await this.Register(this.form);
-        this.$router.push("/login");
-        this.showError = false;
-      } catch (error) {
-        this.showError = true;
-      }
-    },
-  },
+  
 };
 </script>
 

@@ -34,10 +34,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
   name: "Login",
-  components: {},
   data() {
     return {
       form: {
@@ -47,23 +45,7 @@ export default {
       showError: false,
     };
   },
-  methods: {
-    ...mapActions(["LogIn"]),
-    async submit() {
-      const User = {
-          username: this.form.username,
-          password: this.form.password
-        };
-      try {
-        console.log(User);
-        await this.LogIn(User);
-        this.$router.push("/sammlung");
-        this.showError = false;
-      } catch (error) {
-        this.showError = true;
-      }
-    },
-  },
+  
 };
 </script>
 

@@ -1,15 +1,15 @@
 <template>
   <v-expansion-panels class="v-expansion-panels"  focusable accordion>
-    <v-expansion-panel v-for="k in kat" :key="k.headline">
+    <v-expansion-panel v-for="notiz in notes.notes" :key="notiz.id">
       <v-expansion-panel-header color="rgb(240, 240, 240)">
-        <span>{{ k.title }}</span>
-
+        <span>{{ notiz.katTitle }}</span>
+        
         <span id="btn-plus">
           <v-tooltip left>
             <template v-slot:activator="{ on, attrs }">
               <v-fab-transition>
                 <v-btn
-                  @click.stop="addNotiz(k.title)"
+                  @click.stop="addNotiz(notiz.katTitle)"
                   color="green"
                   dark
                   app
@@ -26,7 +26,7 @@
         </span>
       </v-expansion-panel-header>
       <v-expansion-panel-content color="rgb(247, 247, 247)">
-        <Notiz v-for="vc in data" :key="vc" :data="vc"> </Notiz>
+        <Notiz v-for="i in notiz.listNote" :key="i.id" :notiz="i"> </Notiz>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -34,21 +34,22 @@
 
 <script>
 import Notiz from "./notiz.vue";
+
 export default {
   components: {
     Notiz,
   },
-  props: ["data", "kat"],
+  computed:{
+    notes(){
+      console.log(this.$store.state.notes)
+      return this.$store.state.notes}
+  },
   methods:{
-    addKategory(){
-        console.log("add Kategorie")
-    },
-    addNotiz(kategorie){
-        console.log("add Notiz to:" + kategorie)
-        this.$store.commit('setKat', kategorie)
-        this.$router.push("/add");
-    },
-}
+    addNotiz(k){
+      this.$router.push("/add");
+    }
+  }
+  
 };
 </script>
 

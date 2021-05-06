@@ -26,14 +26,11 @@ export default {
     Footer,
     NavBar,
   },
-  computed: {
-    isLoggedIn: function () {
-      return this.$store.getters.isAuthenticated;
-    },
+  mounted(){
+    this.$store.dispatch('loadNotes');
   },
   methods: {
     async logout() {
-      await this.$store.dispatch("LogOut");
       this.$router.push("/login");
     },
   },

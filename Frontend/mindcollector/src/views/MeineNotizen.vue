@@ -3,58 +3,56 @@
     <div>
       <div><h1>Meine Notizen</h1></div>
       <div class="btn-kat">
-        <v-tooltip left>
-          <template v-slot:activator="{ on, attrs }" id="test">
-            <v-fab-transition>
-              <v-btn
-                v-show="!hidden"
-                color="green"
-                dark
-                app
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-            </v-fab-transition>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="primary" dark v-bind="attrs" v-on="on" >
+              Kategorie hinzufügen
+            </v-btn>
           </template>
-          <span>TOOLTIP</span>
-        </v-tooltip>
+          <v-card>
+            <v-card-title>
+              <span class="headline">Kategorie hinzufügen</span>
+            </v-card-title>
+            <v-card-text>
+              <v-text-field label="Titel" :rules="rules" v-model="kategorieName"></v-text-field>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="blue darken-1" text >
+                save
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">
+                close
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
     </div>
     <div id="expan">
-      <VExpansionPanel :data="items" :kat="kategorie"> </VExpansionPanel>
+      <VExpansionPanel> </VExpansionPanel>
     </div>
-    
   </div>
 </template>
 <script>
 import VExpansionPanel from "../components/expansionPanel.vue";
+
+
 export default {
-  data() {
-    return {
-      user: '',
-      items: [
-        {
-          headline: "head1",
-          
-          text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque dicta, rerum officia sunt eos fuga quae, nihil doloremque perferendis veritatis eveniet dolore ipsam aperiam hic aut laborum commodi asperiores fugiat! Iure error quo magni aspernatur vitae deserunt saepe voluptas sunt unde officiis mollitia reprehenderit praesentium dignissimos quis, placeat dolore id nobis ad debitis. Ipsa, inventore? Numquam recusandae accusantium inventore possimus! Non nihil fugit, quibusdam enim natus, maiores fugiat iure consectetur repellat error alias dolorum dignissimos suscipit vero tempore laboriosam. Deleniti nemo, quaerat vero doloribus earum fuga odio explicabo nihil atque",
-        },
-        {
-          headline: "head1",
-          text: "text2",
-        },
-      ],
-      kategorie: [
-        { title: "kategorie1" },
-        { title: "kategorie2" },
-        { title: "kategorie3" },
-      ],
-    };
-  },
   components: {
     VExpansionPanel,
   },
+  data() {
+    return {
+      user: "",
+      dialog: false,
+      rules: [
+        value => !!value || 'Benötigt.',
+      ],
+      kategorie:[],
+      kategorieName: ''
+    };
+  },
+  
 };
 </script>
 
