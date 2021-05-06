@@ -1,50 +1,34 @@
 {
-  "meineNotizen":[
+  "GET": [
     {
-      "id":1,
-      "katTitle":"Arbeit",
-      "listNote":[
+      "katid":1,
+      "kategorie": "Arbeit",
+      "notizen": [
         {
-          "id":1,
-          "title":"meine erste Notiz",
-          "text":"Super, das ist meine erste Notiz"
+          "id": 1,
+          "title": "meine erste Notiz",
+          "text": "Super, das ist meine erste Notiz"
         },
         {
-          "id":2,
-          "title":"meine zweite Notiz",
-          "text":"Super, das ist meine zweite Notiz"
-        },
-        {
-          "id":3,
-          "title":"meine dritte Notiz",
-          "text":"Super, das ist meine dritte Notiz"
+          "id": 2,
+          "title": "meine zweite Notiz",
+          "text": "Super, das ist meine zwiete Notiz"
         }
       ]
     },
     {
-      "id":2,
-      "katTitle":"Hobby",
-      "listNote":[
+      "katid":2,
+      "kategorie": "Hobby",
+      "notizen": [
         {
-          "id":1,
-          "title":"meine erste Notiz",
-          "text":"Super, das ist meine erste Notiz"
+          "id": 1,
+          "title": "meine erste Notiz",
+          "text": "Super, das ist meine erste Notiz"
         },
         {
-          "id":2,
-          "title":"meine zweite Notiz",
-          "text":"Super, das ist meine zweite Notiz"
-        }
-      ]
-    },
-    {
-      "id":3,
-      "katTitle":"sonstiges",
-      "listNote":[
-        {
-          "id":1,
-          "title":"meine erste Notiz",
-          "text":"Super, das ist meine erste Notiz"
+          "id": 2,
+          "title": "meine zweite Notiz",
+          "text": "Super, das ist meine zwiete Notiz"
         }
       ]
     }

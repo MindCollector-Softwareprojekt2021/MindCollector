@@ -52,6 +52,10 @@ export default {
       kategorieName: ''
     };
   },
+  mounted(){
+    console.log("huhu")
+    this.$store.dispatch('loadNotes');
+  },
   
 };
 </script>

@@ -5,28 +5,32 @@ const state = {
 };
 
 const getters = {
-  
+  getNotes: state => state.notes
 };
 
 const actions = {
   async loadNotes({commit}){
-    let response = await Api().get('/meineNotizen');
-    commit('setNotes', response.data);
+    let response = await Api().get('/notiz');
+    commit('loadNotes', response.data);
   },
   async createNote({commit}, note){
-    commit('addNote', note);
+    Api().post('/notiz', note);
+    commit('createNote', note);
+  },
+  async deleteNote({commit}, note){
+    Api().delete('/notiz', note);
+    commit('deleteNote', note);
+  },
+  async updateNote({commit}, note){
+    Api().put('/notiz');
+    commit('deleteNote', note);
   }
 };
 
 const mutations = {
-  setNotes(state, notes){
+  loadNotes(state, notes){
     state.notes = notes;
   },
-  addNote(state, note){
-    console.log(note)
-    state.notes.find(n => n.katTitle === "Arbeit").listNote.push(note);
-    
-  }
 };
 
 export default {

@@ -25,8 +25,8 @@ export default {
     };
   },
   methods:{
-    createNote(){
-      this.$store.dispatch('createNote', this.note);
+    async createNote(){
+      //await this.$store.dispatch('createNote', this.note);
       this.$router.push("/meine-notizen");
     }
   }
