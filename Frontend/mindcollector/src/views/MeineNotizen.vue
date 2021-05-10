@@ -5,7 +5,7 @@
       <div class="btn-kat">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on" >
+            <v-btn color="primary" dark v-bind="attrs" v-on="on">
               Kategorie hinzufügen
             </v-btn>
           </template>
@@ -14,10 +14,20 @@
               <span class="headline">Kategorie hinzufügen</span>
             </v-card-title>
             <v-card-text>
-              <v-text-field label="Titel" :rules="rules" v-model="kategorieName"></v-text-field>
+              <v-form v-model="valid">
+                <v-text-field
+                  v-model="kategorieName"
+                  label="Bezeichnung"
+                  counter="30"
+                  :rules="[
+                    required('Bezeichnung'),
+                    maxLength('Bezeichnung', 30),
+                  ]"
+                />
+              </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="blue darken-1" text >
+              <v-btn color="blue darken-1" text :disabled="!valid">
                 save
               </v-btn>
               <v-btn color="blue darken-1" text @click="dialog = false">
@@ -35,7 +45,7 @@
 </template>
 <script>
 import VExpansionPanel from "../components/expansionPanel.vue";
-
+import validations from "@/utils/validations";
 
 export default {
   components: {
@@ -45,22 +55,20 @@ export default {
     return {
       user: "",
       dialog: false,
-      rules: [
-        value => !!value || 'Benötigt.',
-      ],
-      kategorie:[],
-      kategorieName: ''
+      ...validations,
+      valid: false,
+      kategorie: [],
+      kategorieName: "",
     };
   },
-  mounted(){
-    console.log("huhu")
-    this.$store.dispatch('loadNotes');
+  mounted() {
+    this.$store.dispatch("loadNotes");
   },
-  
+  methods: {
+    save() {},
+  },
 };
 </script>
-
-
 
 <style scoped>
 .notizen {

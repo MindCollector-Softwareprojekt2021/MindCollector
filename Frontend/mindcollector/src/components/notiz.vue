@@ -28,15 +28,9 @@
                 </span>
               </v-card-text>
               <v-card-actions>
-                <v-btn
-                color="primary" 
-                dark
-                block
-                @click="dialog = false"
-                
-              >
-                Close
-              </v-btn>
+                <v-btn color="primary" dark block @click="dialog = false">
+                  Close
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -48,15 +42,14 @@
 
 <script>
 export default {
-  data () {
-      return {
-        dialog: false,
-      }
-    },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   props: ["notiz"],
 };
 </script>
-
 
 <style scoped>
 span {
@@ -68,7 +61,7 @@ span {
 .v-card {
   overflow: hidden auto;
   text-align: left;
-  
+
   margin: 5px 0 0 0;
 }
 

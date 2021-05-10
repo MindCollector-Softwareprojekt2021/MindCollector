@@ -1,28 +1,12 @@
 <template>
-  <v-expansion-panels class="v-expansion-panels"  focusable accordion>
+  <v-expansion-panels class="v-expansion-panels" focusable>
     <v-expansion-panel v-for="notiz in notes.notes" :key="notiz.id">
       <v-expansion-panel-header color="rgb(240, 240, 240)">
         <span>{{ notiz.katTitle }}</span>
-        
         <span id="btn-plus">
-          <v-tooltip left>
-            <template v-slot:activator="{ on, attrs }">
-              <v-fab-transition>
-                <v-btn
-                  @click.stop="addNotiz(notiz.katTitle)"
-                  color="green"
-                  dark
-                  app
-                  v-bind="attrs"
-                  v-on="on"
-                  right
-                >
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
-              </v-fab-transition>
-            </template>
-            <span>TOOLTIP</span>
-          </v-tooltip>
+          <v-btn @click.stop="addNotiz(notiz.katTitle)" color="green">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
         </span>
       </v-expansion-panel-header>
       <v-expansion-panel-content color="rgb(247, 247, 247)">
@@ -39,22 +23,21 @@ export default {
   components: {
     Notiz,
   },
-  computed:{
-    notes(){
-      return this.$store.state.notes}
+  computed: {
+    notes() {
+      return this.$store.state.notes;
+    },
   },
-  methods:{
-    addNotiz(k){
+  methods: {
+    addNotiz(k) {
       this.$router.push("/add");
-    }
-  }
-  
+    },
+  },
 };
 </script>
 
 <style scoped>
-#btn-plus,
-.fab-transition {
-  text-align: center;
-}
-</style>>
+#btn-plus {
+  text-align: right;
+}</style
+>>

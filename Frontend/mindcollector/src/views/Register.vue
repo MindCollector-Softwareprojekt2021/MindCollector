@@ -1,126 +1,55 @@
 <template>
-  <div class="register">
-    <v-form @submit.prevent="submit">
-      <v-container fluid>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="title"
-              :rules="[rules.required, rules.counter]"
-              label="Username"
-              counter
-              outlined
-              maxlength="50"
-            ></v-text-field>
-            <v-text-field
-              v-model="title"
-              :rules="[rules.required, rules.counter]"
-              label="Full Name"
-              counter
-              outlined
-              maxlength="50"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.full_name"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.min]"
-              :type="show1 ? 'text' : 'password'"
-              name="input-10-1"
-              label="Password"
-              hint="At least 8 characters"
-              counter
-              outlined
-              @click:append="show1 = !show1"
-            ></v-text-field>
-            <v-select
-              :items="sf1"
-              label="Sicherheitsfrage 1"
-              dense
-              outlined
-            ></v-select>
-            <v-text-field
-              v-model="message4"
-              label="Antwort Sicherheitsfrage 1"
-              outlined
-              clearable
-            ></v-text-field>
-            <v-select
-              :items="sf2"
-              label="Sicherheitsfrage 2"
-              dense
-              outlined
-            ></v-select>
-            <v-text-field
-              v-model="message4"
-              label="Antwort Sicherheitsfrage 2"
-              outlined
-              clearable
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-btn type="submit" @click="submit()">Submit</v-btn>
-          </v-col>
-        </v-row>
-        <p v-if="showError" id="error">Username already exists</p>
-      </v-container>
-    </v-form>
-  </div>
+  <v-container>
+    <v-col>
+      <h1>Registrieren</h1>
+    </v-col>
+    <v-spacer />
+    <v-col>
+      <RegisterForm
+        :submitForm="register"
+        buttonText="Registrieren"
+        :sf1="sf1"
+        :sf2="sf2"
+      />
+    </v-col>
+  </v-container>
 </template>
 
 <script>
+import RegisterForm from "@/components/Auth/RegisterForm";
 
 export default {
-  name: "Register",
-  components: {},
+  components: {
+    RegisterForm,
+  },
   data() {
     return {
-      show1: false,
-      form: {
-        username: "",
-        full_name: "",
-        password: "",
-      },
-      sf1: ["Wo wurdest du geboren?", "Wie heißt dein erstes Haustier?"],
-      sf2: ["Was ist dein Lieblingsessen", "Was ist deine Lieblingszahl"],
-      showError: false,
-      rules: {
-        required: (value) => !!value || "Required.",
-        counter: (value) => value.length <= 20 || "Max 20 characters",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-      },
+      sf1: [
+        "Welchen Körperteil von Ihrem/Ihrer Freund/in finden Sie am hässlichsten?",
+        "Auf welchen Ihrer Freunde könnten Sie am ehesten verzichten?",
+        "Welchen Gegenstand haben Sie als Kind gestohlen?",
+        "Wie lautet der Vorname der Person, die Sie zum ersten Mal geküsst haben?",
+        "Wie lautet der Nachname des Lehrers, der Ihnen Ihre erste schlechte Note gegeben hat?",
+      ],
+      sf2: [
+        "Welches Land möchten Sie auf keinen Fall bereisen?",
+        "Wie lautete der Name Ihrer Grund-/Grundschule?",
+        "In welcher Stadt wohnt Ihr nächstes Geschwisterkind?",
+        "Zu welcher Tageszeit wurden Sie geboren? (hh:mm)",
+        "Welche sexuelle Stellung mochten Sie noch nie?",
+      ],
     };
   },
-  
+  methods: {
+    async register(regInfo) {
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-}
-.v-btn[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 20px;
-  cursor: pointer;
-}
-.v-btn[type="submit"]:hover {
-  background-color: #4caf50;
-}
-#error {
-  color: red;
-}
-.register {
-  text-align: center;
-  padding: 70px 500px;
-}
-
-@media screen and (max-width: 1000px) {
-  .register {
-    text-align: center;
-    padding: 20px 0;
-  }
+@media screen and (max-width: 500px) {
+  
 }
 </style>
