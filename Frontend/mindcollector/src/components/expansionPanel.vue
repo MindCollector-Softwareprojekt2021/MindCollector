@@ -80,9 +80,6 @@ export default {
     Notiz,
     addNotizText,
   },
-  mounted() {
-    this.$store.dispatch("loadNotes");
-  },
   data() {
     return {};
   },

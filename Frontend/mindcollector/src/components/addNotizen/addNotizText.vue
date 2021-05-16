@@ -53,6 +53,7 @@ export default {
   methods: {
     async createNote() {
       let neueNotiz = {
+        USERNAME: this.$store.getters.getUsername,
         KATEGORIE_ID: this.kat[0],
         EINTRAG: this.note,
       };

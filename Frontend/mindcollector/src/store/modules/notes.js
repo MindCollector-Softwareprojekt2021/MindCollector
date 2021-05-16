@@ -2,7 +2,7 @@ import Api from "@/services/api";
 
 const state = {
   selectedKat: null,
-  notes: null,
+  notes: [],
   username: null,
 };
 
@@ -14,11 +14,13 @@ const getters = {
 };
 
 const actions = {
-  async loadNotes({ commit }) {
-    let response = await Api().get("/notiz");
+  async loadNotes({ commit }, user) {
+    let response = await Api().post("/load", user);
     commit("loadNotes", response.data);
+    console.log(response.data);
   },
   async createNote({ commit }, note) {
+    console.log(note);
     let response = await Api().post("/notiz", note);
 
     //commit("createNote", note);
@@ -32,7 +34,7 @@ const actions = {
     commit("deleteNote", note);
   },
   async createKategorie({ commit }, kat) {
-    let response = await Api().post("/kategorie", { KATEGORIE_TITEL: kat });
+    let response = await Api().post("/kategorie", kat);
     commit("addKategorie", response.data);
   },
   async login({ commit }, user) {
@@ -41,7 +43,7 @@ const actions = {
     console.log(response.data);
   },
   async register({ commit }, user) {
-    let response = await Api().post("/register", user);
+    await Api().post("/register", user);
   },
   async LogOut({ commit }) {
     let username = null;
@@ -75,15 +77,12 @@ const mutations = {
   addKategorie(state, kat) {
     state.notes.push(kat);
   },
-  LogOutNotes(state) {
-    state.notes = null;
-  },
   setUser(state, user) {
     state.username = user;
   },
   LogOut(state) {
     state.username = null;
-    state.notes = null;
+    state.notes = [];
   },
 };
 

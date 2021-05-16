@@ -58,16 +58,24 @@ export default {
   },
   data() {
     return {
-      user: "",
+      USERNAME: this.$store.getters.getUsername,
       dialog: false,
       ...validations,
       valid: false,
       kategorieName: "",
     };
   },
+  mounted() {
+    this.$store.dispatch("loadNotes", { USERNAME: this.USERNAME });
+    console.log("loadDAta");
+  },
   methods: {
     async save() {
-      await this.$store.dispatch("createKategorie", this.kategorieName);
+      let kat = {
+        KATEGORIE_TITEL: this.kategorieName,
+        USERNAME: this.USERNAME,
+      };
+      await this.$store.dispatch("createKategorie", kat);
       this.dialog = false;
     },
   },

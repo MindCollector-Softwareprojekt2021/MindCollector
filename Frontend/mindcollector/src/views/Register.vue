@@ -5,12 +5,7 @@
     </v-col>
     <v-spacer />
     <v-col>
-      <RegisterForm
-        :submitForm="register"
-        buttonText="Registrieren"
-        :sf1="sf1"
-        :sf2="sf2"
-      />
+      <RegisterForm buttonText="Registrieren" :sf1="sf1" :sf2="sf2" />
     </v-col>
   </v-container>
 </template>
@@ -25,10 +20,10 @@ export default {
   data() {
     return {
       sf1: [
-        "Welchen Körperteil von Ihrem/Ihrer Freund/in finden Sie am hässlichsten?",
-        "Auf welchen Ihrer Freunde könnten Sie am ehesten verzichten?",
+        "In welcher Stadt bzw. an welchem Ort wurden Sie geboren?",
+        "Geben Sie Marke und Modell Ihres ersten Autos an.",
         "Welchen Gegenstand haben Sie als Kind gestohlen?",
-        "Wie lautet der Vorname der Person, die Sie zum ersten Mal geküsst haben?",
+        "In welcher Stadt bzw. welchem Ort haben sich Ihre Eltern kennengelernt?",
         "Wie lautet der Nachname des Lehrers, der Ihnen Ihre erste schlechte Note gegeben hat?",
       ],
       sf2: [
@@ -36,20 +31,14 @@ export default {
         "Wie lautete der Name Ihrer Grund-/Grundschule?",
         "In welcher Stadt wohnt Ihr nächstes Geschwisterkind?",
         "Zu welcher Tageszeit wurden Sie geboren? (hh:mm)",
-        "Welche sexuelle Stellung mochten Sie noch nie?",
+        "Welches war Ihr erstes Konzert, das Sie besucht haben?",
       ],
     };
-  },
-  methods: {
-    async register(regInfo) {
-      this.$router.push("/login");
-    },
   },
 };
 </script>
 
 <style scoped>
 @media screen and (max-width: 500px) {
-  
 }
 </style>
