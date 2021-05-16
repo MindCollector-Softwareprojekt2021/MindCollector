@@ -1,7 +1,7 @@
 <template>
   <v-form v-model="valid">
     <v-text-field
-      v-model="userInfo.username"
+      v-model="userInfo.USERNAME"
       label="Benutzername"
       placeholder="Username123"
       outlined
@@ -9,7 +9,7 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="userInfo.password"
+      v-model="userInfo.PASSWORT"
       label="Passwort"
       placeholder="IchBinSicher!"
       outlined
@@ -17,13 +17,9 @@
       :rules="[required('Passwort')]"
     ></v-text-field>
 
-    <v-btn
-      block
-      color="success"
-      :disabled="!valid"
-      @click="submitForm(userInfo)"
-      >{{ buttonText }}</v-btn
-    >
+    <v-btn block color="success" :disabled="!valid" @click="login(userInfo)">{{
+      buttonText
+    }}</v-btn>
     <p v-if="showError" id="error">Benutzername oder Passwort ist falsch</p>
   </v-form>
 </template>
@@ -37,11 +33,22 @@ export default {
       ...validations,
       valid: false,
       userInfo: {
-        username: "",
-        password: "",
+        USERNAME: "",
+        PASSWORT: "",
       },
       showError: false,
     };
+  },
+  methods: {
+    async login(loginInfo) {
+      try {
+        await this.$store.dispatch("login", loginInfo);
+        this.$router.push("/meine-notizen");
+        this.showError = false;
+      } catch (error) {
+        this.showError = true;
+      }
+    },
   },
   props: ["submitForm", "buttonText"],
 };

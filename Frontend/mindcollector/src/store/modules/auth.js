@@ -1,31 +1,38 @@
-import Api from "@/services/api"
+import Api from "@/services/api";
 
 const state = {
-  userID:0,
-  username:''
-
+  username: null,
 };
 
 const getters = {
-  getUsername: state => state.username,
-  getUserID: state => state.userID
+  isAuthenticated: (state) => !!state.username,
+  getUsername: (state) => state.username,
 };
 
 const actions = {
-  async login({commit}, user){
-    let response = await Api().get('/user', user);
-    commit('setUser', response.data);
+  async login({ commit }, user) {
+    let response = await Api().post("/login", user);
+    commit("setUser", user.USERNAME);
+    console.log(response.data);
   },
-  async register({commit}, user){
-    let response = await Api().post('/user', user);
+  async register({ commit }, user) {
+    let response = await Api().post("/register", user);
+  },
+  async LogOut({ commit }) {
+    let username = null;
+    console.log();
+    await this.$store.dispatch("LogOutNotes");
+    commit("LogOut", username);
   },
 };
 
 const mutations = {
-  setUser(state, user){
-    state.userID = user.userID;
-    state.username = user.username;
-  }
+  setUser(state, user) {
+    state.username = user;
+  },
+  LogOut(state) {
+    state.user = null;
+  },
 };
 
 export default {

@@ -5,7 +5,7 @@
     </v-col>
     <v-spacer />
     <v-col>
-      <LoginForm :submitForm="login" buttonText="Anmelden" />
+      <LoginForm buttonText="Anmelden" />
     </v-col>
     <v-spacer />
     <v-col>
@@ -24,11 +24,6 @@ export default {
   },
   data() {
     return {};
-  },
-  methods: {
-    async login(loginInfo) {
-      this.$router.push("/meine-notizen");
-    },
   },
 };
 </script>
