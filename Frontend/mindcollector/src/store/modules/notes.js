@@ -17,11 +17,9 @@ const actions = {
   async loadNotes({ commit }, user) {
     let response = await Api().post("/load", user);
     commit("loadNotes", response.data);
-    console.log(response.data);
   },
   async createNote({ commit }, note) {
-    console.log(note);
-    let response = await Api().post("/notiz", note);
+    await Api().post("/notiz", note);
 
     //commit("createNote", note);
   },
@@ -37,10 +35,14 @@ const actions = {
     let response = await Api().post("/kategorie", kat);
     commit("addKategorie", response.data);
   },
-  async login({ commit }, user) {
-    let response = await Api().post("/login", user);
-    commit("setUser", user.USERNAME);
+  async deleteKategorie({ commit }, kat) {
+    let response = await Api().delete(`/kategorie/${kat}`);
     console.log(response.data);
+    commit("deleteKat", kat);
+  },
+  async login({ commit }, user) {
+    await Api().post("/login", user);
+    commit("setUser", user.USERNAME);
   },
   async register({ commit }, user) {
     await Api().post("/register", user);
@@ -73,7 +75,16 @@ const mutations = {
         1
       );
   },
-  updateNote() {},
+  deleteKat(state, kat) {
+    let test = state.notes.splice(
+      state.notes
+        .filter(function(chain) {
+          return chain.KATEGORIE_ID === kat.KATEGORIE_ID;
+        })
+        .indexOf(kat)
+    );
+  },
+  updateNote(state) {},
   addKategorie(state, kat) {
     state.notes.push(kat);
   },

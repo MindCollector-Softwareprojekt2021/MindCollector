@@ -67,7 +67,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("loadNotes", { USERNAME: this.USERNAME });
-    console.log("loadDAta");
   },
   methods: {
     async save() {

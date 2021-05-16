@@ -5,6 +5,43 @@
         <span>{{ notiz.KATEGORIE_TITEL }}</span>
 
         <span id="btn-plus">
+          <v-dialog v-model="deleteKatDialog" persistent max-width="290">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="red"
+                max-width="100"
+                v-if="!notiz.EINTRAG.length"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-minus</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">
+                Soll die Kategorie gelöscht werden?
+              </v-card-title>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="deleteKatDialog = false"
+                >
+                  Disagree
+                </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  @click="deleteKategorie(notiz.KATEGORIE_ID)"
+                >
+                  Agree
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
           <v-menu offset-y rounded="b-xl">
             <template v-slot:activator="{ attrs, on }">
               <v-btn class="green" v-bind="attrs" v-on="on">
@@ -81,7 +118,9 @@ export default {
     addNotizText,
   },
   data() {
-    return {};
+    return {
+      deleteKatDialog: false,
+    };
   },
   computed: {
     notes() {
@@ -89,9 +128,13 @@ export default {
     },
   },
   methods: {
-    addNotiz(k, push) {
+    async addNotiz(k, push) {
       this.$store.commit("setSelectedKat", k);
       this.$router.push(push);
+    },
+    async deleteKategorie(k) {
+      this.$store.dispatch("deleteKategorie", k);
+      this.deleteKatDialog = false;
     },
   },
 };
