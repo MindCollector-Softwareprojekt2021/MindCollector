@@ -3,9 +3,9 @@
     <h1>Text Notiz hinzufügen</h1>
     <v-form v-model="valid">
       <v-col>
-        <v-text-field :value="kat" label="Kategorie" outlined disabled />
+        <v-text-field :value="kat[1]" outlined disabled />
         <v-text-field
-          v-model="note.title"
+          v-model="note.EINTRAG_TITEL"
           label="Titel"
           counter="50"
           :rules="[
@@ -15,11 +15,11 @@
           ]"
         />
         <v-textarea
-          v-model="note.text"
+          v-model="note.EINTRAG_BESCHREIBUNG"
           outlined
           counter="500"
           label="Text"
-          :rules="[required('Text'), maxLength('Text', 500)]"
+          :rules="[required('Text'), maxLength('Text', 255)]"
         />
       </v-col>
       <v-col>
@@ -41,17 +41,23 @@ export default {
   data() {
     return {
       valid: false,
-      kat: "",
+      kat: this.$store.getters.getSelectedKat,
       note: {
-        title: "",
-        text: "",
+        EINTRAG_TITEL: "",
+        EINTRAG_BESCHREIBUNG: "",
       },
       ...validations,
     };
   },
+  computed: {},
   methods: {
     async createNote() {
-      //await this.$store.dispatch('createNote', this.note);
+      let neueNotiz = {
+        USERNAME: this.$store.getters.getUsername,
+        KATEGORIE_ID: this.kat[0],
+        EINTRAG: this.note,
+      };
+      await this.$store.dispatch("createNote", neueNotiz);
       this.$router.push("/meine-notizen");
     },
   },

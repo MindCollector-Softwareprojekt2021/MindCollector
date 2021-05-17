@@ -27,7 +27,12 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="blue darken-1" text :disabled="!valid">
+              <v-btn
+                color="blue darken-1"
+                text
+                :disabled="!valid"
+                @click="save()"
+              >
                 save
               </v-btn>
               <v-btn color="blue darken-1" text @click="dialog = false">
@@ -53,19 +58,25 @@ export default {
   },
   data() {
     return {
-      user: "",
+      USERNAME: this.$store.getters.getUsername,
       dialog: false,
       ...validations,
       valid: false,
-      kategorie: [],
       kategorieName: "",
     };
   },
   mounted() {
-    this.$store.dispatch("loadNotes");
+    this.$store.dispatch("loadNotes", { USERNAME: this.USERNAME });
   },
   methods: {
-    save() {},
+    async save() {
+      let kat = {
+        KATEGORIE_TITEL: this.kategorieName,
+        USERNAME: this.USERNAME,
+      };
+      await this.$store.dispatch("createKategorie", kat);
+      this.dialog = false;
+    },
   },
 };
 </script>

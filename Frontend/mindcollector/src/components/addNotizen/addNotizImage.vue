@@ -29,7 +29,14 @@
           counter="500"
           :rules="[required('Text'), maxLength('Text', 500)]"
         ></v-textarea>
-        <v-file-input show-size></v-file-input>
+        <v-file-input
+          v-model="file"
+          show-size
+          accept="image/png, image/jpeg, image/bmp"
+          prepend-icon="mdi-camera"
+          :rules="[checkImage('Titel')]"
+          loading
+        ></v-file-input>
       </v-col>
       <v-col>
         <v-btn :disabled="!valid" @click="createNote" block color="success">
@@ -52,6 +59,7 @@ export default {
       valid: false,
       kat: "",
       enabled: false,
+      file: null,
       ...validations,
     };
   },

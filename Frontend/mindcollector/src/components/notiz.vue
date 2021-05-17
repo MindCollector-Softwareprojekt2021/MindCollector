@@ -1,34 +1,105 @@
 <template>
   <v-card outlined light elevation="24">
-    <v-card-title>
-      {{ notiz.title }}
-    </v-card-title>
+    <v-card-title> {{ notiz[1] }} </v-card-title>
     <v-card-text class="v-cardtext">
-      {{ notiz.text }}
+      {{ notiz[2] }}
     </v-card-text>
 
     <v-card-actions>
       <div id="ac">
-        <span><v-btn color="primary" dark> Edit </v-btn></span>
-        <span><v-btn color="primary" dark> Delete </v-btn></span>
-        <span>
-          <v-dialog v-model="dialog" width="auto">
+        <span
+          ><v-dialog v-model="dialogEdit" persistent max-width="400">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                Open Dialog
+                Ändern
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">
+                Notiz ändern:
+              </v-card-title>
+              <v-spacer></v-spacer>
+              <v-card-text>
+                <v-text-field
+                  v-model="titel"
+                  label="Titel"
+                  outlined
+                  clearable
+                  required
+                ></v-text-field>
+                <v-textarea
+                  outlined
+                  label="Text"
+                  v-model="text"
+                  required
+                ></v-textarea>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="orange darken-1" dark @click="abbruch()">
+                  Abbrechen
+                </v-btn>
+                <v-btn color="green darken-1" dark @click="editNote()">
+                  Speichern
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog></span
+        >
+        <span>
+          <v-dialog v-model="dialogDelete" persistent max-width="400">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                Löschen
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">
+                - {{ notiz[1] }} - löschen?
+              </v-card-title>
+              <v-card-text
+                >Diese Notiz wird unwideruflich gelöscht. Bist du damit
+                einverstanden?</v-card-text
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="orange darken-1"
+                  dark
+                  @click="dialogDelete = false"
+                >
+                  Nein, Abbruch!
+                </v-btn>
+                <v-btn color="green darken-1" dark @click="deleteNote()">
+                  Ja, löschen!
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </span>
+        <span>
+          <v-dialog v-model="dialogAnzeige" width="700px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                Anzeigen
               </v-btn>
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ notiz.title }}</span>
+                <span class="headline">{{ notiz[1] }}</span>
               </v-card-title>
               <v-card-text>
                 <span>
-                  {{ notiz.text }}
+                  {{ notiz[2] }}
                 </span>
               </v-card-text>
               <v-card-actions>
-                <v-btn color="primary" dark block @click="dialog = false">
+                <v-btn
+                  color="primary"
+                  dark
+                  block
+                  @click="dialogAnzeige = false"
+                >
                   Close
                 </v-btn>
               </v-card-actions>
@@ -44,10 +115,34 @@
 export default {
   data() {
     return {
-      dialog: false,
+      dialogDelete: false,
+      dialogAnzeige: false,
+      dialogEdit: false,
+      titel: this.notiz[1],
+      text: this.notiz[2],
     };
   },
-  props: ["notiz"],
+  props: ["notiz", "katID"],
+  methods: {
+    async deleteNote() {
+      await this.$store.dispatch("deleteNote", [this.notiz, this.katID]);
+      this.dialogDelete = false;
+    },
+    abbruch() {
+      this.dialogEdit = false;
+      this.titel = this.notiz[1];
+      this.text = this.notiz[2];
+    },
+    async editNote() {
+      let note = {
+        EINTRAG_ID: this.notiz[0],
+        EINTRAG_TITEL: this.titel,
+        EINTRAG_BESCHREIBUNG: this.text,
+      };
+      console.log(note);
+      this.dialogEdit = false;
+    },
+  },
 };
 </script>
 
