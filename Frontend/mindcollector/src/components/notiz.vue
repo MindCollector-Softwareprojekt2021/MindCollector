@@ -1,8 +1,8 @@
 <template>
-  <v-card outlined light elevation="24">
-    <v-card-title> {{ notiz[1] }} </v-card-title>
+  <v-card outlined light elevation="24" max-width="600">
+    <v-card-title> {{ titel }} </v-card-title>
     <v-card-text class="v-cardtext">
-      {{ notiz[2] }}
+      {{ text }}
     </v-card-text>
 
     <v-card-actions>
@@ -55,7 +55,7 @@
             </template>
             <v-card>
               <v-card-title class="headline">
-                - {{ notiz[1] }} - löschen?
+                - {{ titel }} - löschen?
               </v-card-title>
               <v-card-text
                 >Diese Notiz wird unwideruflich gelöscht. Bist du damit
@@ -86,11 +86,11 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="headline">{{ notiz[1] }}</span>
+                <span class="headline">{{ titel }}</span>
               </v-card-title>
               <v-card-text>
                 <span>
-                  {{ notiz[2] }}
+                  {{ text }}
                 </span>
               </v-card-text>
               <v-card-actions>

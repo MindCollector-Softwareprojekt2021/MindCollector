@@ -2,12 +2,7 @@ import axios from "axios";
 
 export default () => {
   return axios.create({
-    baseURL: "https://mezzox.pythonanywhere.com",
+    baseURL: "https://mccurly.pythonanywhere.com/api",
     withCredentials: false,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
   });
 };

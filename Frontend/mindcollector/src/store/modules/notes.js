@@ -16,6 +16,7 @@ const getters = {
 const actions = {
   async loadNotes({ commit }, user) {
     let response = await Api().post("/load", user);
+    console.log(response.data);
     commit("loadNotes", response.data);
   },
   async createNote({ commit }, note) {
@@ -45,7 +46,8 @@ const actions = {
     commit("setUser", user.USERNAME);
   },
   async register({ commit }, user) {
-    await Api().post("/register", user);
+    let response = await Api().post("/user", user);
+    console.log(response);
   },
   async LogOut({ commit }) {
     let username = null;
