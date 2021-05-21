@@ -16,7 +16,6 @@ const getters = {
 const actions = {
   async loadNotes({ commit }, user) {
     let response = await Api().post("/load", user);
-    console.log(response.data);
     commit("loadNotes", response.data);
   },
   async createNote({ commit }, note) {
@@ -30,15 +29,13 @@ const actions = {
   },
   async updateNote({ commit }, note) {
     await Api().put("/notiz");
-    commit("deleteNote", note);
   },
   async createKategorie({ commit }, kat) {
     let response = await Api().post("/kategorie", kat);
     commit("addKategorie", response.data);
   },
   async deleteKategorie({ commit }, kat) {
-    let response = await Api().delete(`/kategorie/${kat}`);
-    console.log(response.data);
+    await Api().delete(`/kategorie/${kat}`);
     commit("deleteKat", kat);
   },
   async login({ commit }, user) {
@@ -46,12 +43,10 @@ const actions = {
     commit("setUser", user.USERNAME);
   },
   async register({ commit }, user) {
-    let response = await Api().post("/user", user);
-    console.log(response);
+    await Api().post("/user", user);
   },
   async LogOut({ commit }) {
     let username = null;
-
     commit("LogOut", username);
   },
 };
@@ -78,7 +73,7 @@ const mutations = {
       );
   },
   deleteKat(state, kat) {
-    let test = state.notes.splice(
+    state.notes.splice(
       state.notes
         .filter(function(chain) {
           return chain.KATEGORIE_ID === kat.KATEGORIE_ID;
@@ -86,9 +81,8 @@ const mutations = {
         .indexOf(kat)
     );
   },
-  updateNote(state) {},
   addKategorie(state, kat) {
-    state.notes.push(kat);
+    state.notes.unshift(kat);
   },
   setUser(state, user) {
     state.username = user;

@@ -95,7 +95,10 @@
           //-->
         </span>
       </v-expansion-panel-header>
-      <v-expansion-panel-content color="rgb(247, 247, 247)">
+      <v-expansion-panel-content
+        color="rgb(247, 247, 247)"
+        class="expanContent"
+      >
         <Notiz
           v-for="i in notiz.EINTRAG"
           :key="i.id"
@@ -124,6 +127,7 @@ export default {
   },
   computed: {
     notes() {
+      console.log(this.$store.getters.getNotes);
       return this.$store.getters.getNotes;
     },
   },
@@ -143,5 +147,14 @@ export default {
 <style scoped>
 #btn-plus {
   text-align: right;
-}</style
->>
+}
+.expanContent {
+  padding: 0 20%;
+}
+
+@media screen and (max-width: 700px) {
+  .expanContent {
+    padding: 0;
+  }
+}
+</style>

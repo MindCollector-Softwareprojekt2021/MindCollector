@@ -7,7 +7,7 @@
     <v-main app>
       <v-alert type="error" dense dismissible>
         "Hallo Besucher! Diese Seite/App ist noch im Aufbau. Es handelt sich um
-        ein Softwareprojet der Fachhochschule Bielefeld Campus Minden SoSe21.
+        ein Softwareprojekt der Fachhochschule Bielefeld Campus Minden SoSe21.
         Bei Rückfragen an marko.lemac@fh-bielefeld.de wenden."
       </v-alert>
       <router-view></router-view>

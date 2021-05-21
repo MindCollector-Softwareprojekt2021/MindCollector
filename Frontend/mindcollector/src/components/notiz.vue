@@ -1,10 +1,16 @@
 <template>
-  <v-card outlined light elevation="24" max-width="600">
+  <v-card outlined light elevation="24">
     <v-card-title> {{ titel }} </v-card-title>
     <v-card-text class="v-cardtext">
-      {{ text }}
+      <v-row>
+        <v-col class="text">
+          {{ text }}
+        </v-col>
+        <span v-if="img.length > 0" class="bild">
+          <img :src="imgURL" alt="img" />
+        </span>
+      </v-row>
     </v-card-text>
-
     <v-card-actions>
       <div id="ac">
         <span
@@ -78,7 +84,7 @@
           </v-dialog>
         </span>
         <span>
-          <v-dialog v-model="dialogAnzeige" width="700px">
+          <v-dialog v-model="dialogAnzeige" max-width="800px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
                 Anzeigen
@@ -89,9 +95,12 @@
                 <span class="headline">{{ titel }}</span>
               </v-card-title>
               <v-card-text>
-                <span>
+                <div v-if="img.length > 0" style="textAlign: center">
+                  <img :src="imgURL" alt="img" style="maxWidth: 100%" />
+                </div>
+                <div>
                   {{ text }}
-                </span>
+                </div>
               </v-card-text>
               <v-card-actions>
                 <v-btn
@@ -118,9 +127,15 @@ export default {
       dialogDelete: false,
       dialogAnzeige: false,
       dialogEdit: false,
-      titel: this.notiz[1],
-      text: this.notiz[2],
+      titel: this.notiz.EINTRAG_TITEL,
+      text: this.notiz.EINTRAG_BESCHREIBUNG,
+      img: this.notiz.BILD,
     };
+  },
+  computed: {
+    imgURL() {
+      return "data:image/png;charset=utf-8;base64," + this.img;
+    },
   },
   props: ["notiz", "katID"],
   methods: {
@@ -130,16 +145,16 @@ export default {
     },
     abbruch() {
       this.dialogEdit = false;
-      this.titel = this.notiz[1];
-      this.text = this.notiz[2];
+      this.titel = this.notiz.EINTRAG_TITEL;
+      this.text = this.notiz.EINTRAG_BESCHREIBUNG;
     },
     async editNote() {
       let note = {
-        EINTRAG_ID: this.notiz[0],
+        EINTRAG_ID: this.notiz.EINTRAG_ID,
         EINTRAG_TITEL: this.titel,
         EINTRAG_BESCHREIBUNG: this.text,
       };
-      console.log(note);
+      await this.$store.dispatch("updateNote", note);
       this.dialogEdit = false;
     },
   },
@@ -160,11 +175,6 @@ span {
   margin: 5px 0 0 0;
 }
 
-.v-cardtext {
-  overflow: hidden auto;
-  display: block;
-  max-height: 200px;
-}
 .v-card__actions {
   background-color: rgb(119, 119, 119);
   padding: 0 0;
@@ -187,6 +197,37 @@ span {
     background-color: rgb(119, 119, 119);
     zoom: 0.75;
     text-align: center;
+  }
+}
+</style>
+<style lang="scss" scoped>
+$textHeight: 250px;
+$imgHeight: 200px;
+.v-cardtext {
+  overflow: hidden hidden;
+  display: block;
+  max-height: $textHeight;
+  margin: 0;
+}
+.v-cardtext img {
+  /*float: right;*/
+  max-height: $imgHeight;
+}
+.text {
+  overflow: hidden auto;
+  max-height: $textHeight;
+  width: 100%;
+}
+.bild {
+  overflow: hidden hidden;
+  text-align: center;
+  margin: auto;
+}
+@media screen and (max-width: 770px) {
+  .v-cardtext img {
+    /*float: right;*/
+    max-height: $imgHeight;
+    zoom: 0.5;
   }
 }
 </style>
