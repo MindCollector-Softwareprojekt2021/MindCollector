@@ -84,6 +84,11 @@ const mutations = {
           .indexOf(note[0]),
         1
       );
+    console.log(
+      state.notes.filter(function(chain) {
+        return chain.KATEGORIE_ID === note[1];
+      })[0].EINTRAG.length
+    );
   },
   deleteKat(state, kat) {
     state.notes.splice(

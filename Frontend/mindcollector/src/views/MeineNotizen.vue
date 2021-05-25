@@ -33,10 +33,10 @@
                 :disabled="!valid"
                 @click="save()"
               >
-                save
+                Speichern
               </v-btn>
               <v-btn color="blue darken-1" text @click="dialog = false">
-                close
+                Abbrechen
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -70,12 +70,17 @@ export default {
   },
   methods: {
     async save() {
-      let kat = {
-        KATEGORIE_TITEL: this.kategorieName,
-        USERNAME: this.USERNAME,
-      };
-      await this.$store.dispatch("createKategorie", kat);
-      this.dialog = false;
+      try {
+        let kat = {
+          KATEGORIE_TITEL: this.kategorieName,
+          USERNAME: this.USERNAME,
+        };
+        await this.$store.dispatch("createKategorie", kat);
+        this.dialog = false;
+        this.kategorieName = "";
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

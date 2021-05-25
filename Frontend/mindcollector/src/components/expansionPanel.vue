@@ -5,7 +5,7 @@
         <span>{{ notiz.KATEGORIE_TITEL }}</span>
         <span id="btn-plus">
           <!-- Dialog -->
-          <DeleteKategorie :notiz="notiz" />
+          <DeleteKategorie v-if="notiz.EINTRAG.length == 0" :notiz="notiz" />
           <!-- Menu add -->
           <AddMenu :notiz="notiz" />
         </span>

@@ -1,13 +1,7 @@
 <template>
   <v-dialog v-model="deleteKatDialog" persistent max-width="290">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        color="red"
-        max-width="100"
-        v-if="!notiz.EINTRAG.length"
-        v-bind="attrs"
-        v-on="on"
-      >
+      <v-btn color="red" max-width="100" v-bind="attrs" v-on="on">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
     </template>
@@ -37,6 +31,11 @@ export default {
     };
   },
   props: ["notiz"],
+  computed: {
+    img() {
+      return this.notiz.EINTRAG.length == 0;
+    },
+  },
   methods: {
     async deleteKategorie() {
       try {
