@@ -3,9 +3,7 @@
     <v-card-title> {{ titel }} </v-card-title>
     <v-card-text class="v-cardtext">
       <v-row>
-        <v-col class="text">
-          {{ text }}
-        </v-col>
+        <v-col class="text"> {{ text }} </v-col>
         <span v-if="img.length > 0" class="bild">
           <img :src="imgURL" alt="img" />
         </span>
@@ -13,6 +11,7 @@
     </v-card-text>
     <v-card-actions>
       <div id="ac">
+        <!--Ändern Button -->
         <span
           ><v-dialog v-model="dialogEdit" persistent max-width="400">
             <template v-slot:activator="{ on, attrs }">
@@ -50,8 +49,9 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
-          </v-dialog></span
-        >
+          </v-dialog>
+        </span>
+        <!--Löschen Button -->
         <span>
           <v-dialog v-model="dialogDelete" persistent max-width="400">
             <template v-slot:activator="{ on, attrs }">
@@ -74,15 +74,16 @@
                   dark
                   @click="dialogDelete = false"
                 >
-                  Nein, Abbruch!
+                  Abbrechen
                 </v-btn>
                 <v-btn color="green darken-1" dark @click="deleteNote()">
-                  Ja, löschen!
+                  Löschen
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
         </span>
+        <!--Anzeigen Button -->
         <span>
           <v-dialog v-model="dialogAnzeige" max-width="800px">
             <template v-slot:activator="{ on, attrs }">
@@ -129,7 +130,7 @@ export default {
       dialogEdit: false,
       titel: this.notiz.EINTRAG_TITEL,
       text: this.notiz.EINTRAG_BESCHREIBUNG,
-      img: this.notiz.BILD,
+      img: this.notiz.EINTRAG_BILD,
     };
   },
   computed: {
@@ -140,7 +141,10 @@ export default {
   props: ["notiz", "katID"],
   methods: {
     async deleteNote() {
-      await this.$store.dispatch("deleteNote", [this.notiz, this.katID]);
+      await this.$store.dispatch("deleteNote", [
+        this.notiz.EINTRAG_ID,
+        this.katID,
+      ]);
       this.dialogDelete = false;
     },
     abbruch() {
@@ -149,13 +153,17 @@ export default {
       this.text = this.notiz.EINTRAG_BESCHREIBUNG;
     },
     async editNote() {
-      let note = {
-        EINTRAG_ID: this.notiz.EINTRAG_ID,
-        EINTRAG_TITEL: this.titel,
-        EINTRAG_BESCHREIBUNG: this.text,
-      };
-      await this.$store.dispatch("updateNote", note);
-      this.dialogEdit = false;
+      try {
+        let note = {
+          EINTRAG_ID: this.notiz.EINTRAG_ID,
+          EINTRAG_TITEL: this.titel,
+          EINTRAG_BESCHREIBUNG: this.text,
+        };
+        await this.$store.dispatch("updateNote", note);
+        this.dialogEdit = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

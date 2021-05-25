@@ -24,18 +24,28 @@ const actions = {
     //commit("createNote", note);
   },
   async deleteNote({ commit }, note) {
-    await Api().delete(`/notiz/delete/${note[0][0]}`);
+    let delN = {
+      EINTRAG_ID: note[0],
+    };
+    console.log(delN);
+    await Api().post("/deleteNotiz", delN);
     commit("deleteNote", note);
   },
   async updateNote({ commit }, note) {
-    await Api().put("/notiz");
+    console.log(note);
+    await Api().put("/notiz", note);
   },
   async createKategorie({ commit }, kat) {
     let response = await Api().post("/kategorie", kat);
     commit("addKategorie", response.data);
   },
   async deleteKategorie({ commit }, kat) {
-    await Api().delete(`/kategorie/${kat}`);
+    let delK = {
+      KATEGORIE_ID: kat,
+    };
+    console.log(delK);
+    await Api().post("/deleteKategorie", delK);
+
     commit("deleteKat", kat);
   },
   async login({ commit }, user) {
@@ -68,17 +78,21 @@ const mutations = {
           .filter(function(chain) {
             return chain.KATEGORIE_ID === note[1];
           })[0]
-          .EINTRAG.indexOf(note[0]),
+          .EINTRAG.map(function(d) {
+            return d["EINTRAG_ID"];
+          })
+          .indexOf(note[0]),
         1
       );
   },
   deleteKat(state, kat) {
     state.notes.splice(
       state.notes
-        .filter(function(chain) {
-          return chain.KATEGORIE_ID === kat.KATEGORIE_ID;
+        .map(function(d) {
+          return d["KATEGORIE_ID"];
         })
-        .indexOf(kat)
+        .indexOf(kat),
+      1
     );
   },
   addKategorie(state, kat) {

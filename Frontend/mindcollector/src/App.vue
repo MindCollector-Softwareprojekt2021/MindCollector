@@ -15,6 +15,16 @@
 
     <v-footer color="primary lighten-1" padless app>
       <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          {{ link }}
+        </v-btn>
         <v-col class="primary lighten-2 py-1 text-center white--text" cols="12">
           {{ new Date().getFullYear() }} — <strong>MindCollector</strong>
         </v-col>
@@ -27,6 +37,11 @@
 import Footer from "@/components/footer.vue";
 import NavBar from "@/components/NavBar.vue";
 export default {
+  data() {
+    return {
+      links: ["Startseite", "Über uns", "Impressum", "Datenschutz", "AGB's"],
+    };
+  },
   components: {
     Footer,
     NavBar,
