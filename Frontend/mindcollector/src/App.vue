@@ -17,13 +17,14 @@
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
-          :key="link"
+          :key="link[0]"
+          :to="link[1]"
           color="white"
           text
           rounded
           class="my-2"
         >
-          {{ link }}
+          {{ link[0] }}
         </v-btn>
         <v-col class="primary lighten-2 py-1 text-center white--text" cols="12">
           {{ new Date().getFullYear() }} — <strong>MindCollector</strong>
@@ -39,7 +40,14 @@ import NavBar from "@/components/NavBar.vue";
 export default {
   data() {
     return {
-      links: ["Startseite", "Über uns", "Impressum", "Datenschutz", "AGB's"],
+      links: [
+        ["Startseite", "/"],
+        ["Über uns", "/Ueber-uns"],
+        ["Impressum", "/Impressum"],
+        ["Datenschutz", "/Datenschutz"],
+        ["AGB's", "/AGB"],
+        ["FAQ", "/FAQ"],
+      ],
     };
   },
   components: {

@@ -1,12 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Register from "../views/Register.vue";
-import Login from "../views/Login.vue";
+import Home from "@/views/Home.vue";
+import Register from "@/views/Register.vue";
+import Login from "@/views/Login.vue";
 import MeineNotizen from "../views/MeineNotizen.vue";
 import addNotizAudio from "@/components/addNotizen/addNotizAudio.vue";
 import addNotizImage from "@/components/addNotizen/addNotizImage.vue";
 import addNotizText from "@/components/addNotizen/addNotizText.vue";
+import FAQ from "@/views/FAQ.vue";
+import AGB from "@/views/AGB.vue";
+import AboutUs from "@/views/AboutUs.vue";
+import Datenschutz from "@/views/datenschutz.vue";
+import Impressum from "@/views/impressum.vue";
 import store from "../store";
 
 Vue.use(VueRouter);
@@ -53,6 +58,36 @@ const routes = [
     name: "addNotizText",
     component: addNotizText,
     meta: { requiresAuth: true },
+  },
+  {
+    path: "/FAQ",
+    name: "FAQ",
+    component: FAQ,
+    meta: { guest: true },
+  },
+  {
+    path: "/AGB",
+    name: "AGB",
+    component: AGB,
+    meta: { guest: true },
+  },
+  {
+    path: "/Ueber-uns",
+    name: "Ueber-uns",
+    component: AboutUs,
+    meta: { guest: true },
+  },
+  {
+    path: "/Impressum",
+    name: "Impressum",
+    component: Impressum,
+    meta: { guest: true },
+  },
+  {
+    path: "/Datenschutz",
+    name: "Datenschutz",
+    component: Datenschutz,
+    meta: { guest: true },
   },
 ];
 

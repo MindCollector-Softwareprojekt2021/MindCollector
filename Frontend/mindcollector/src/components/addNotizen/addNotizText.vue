@@ -45,6 +45,7 @@ export default {
       note: {
         EINTRAG_TITEL: "",
         EINTRAG_BESCHREIBUNG: "",
+        EINTRAG_BILD: "",
       },
       ...validations,
     };

@@ -135,7 +135,7 @@ export default {
   },
   computed: {
     imgURL() {
-      return "data:image/png;charset=utf-8;base64," + this.img;
+      return this.img;
     },
   },
   props: ["notiz", "katID"],

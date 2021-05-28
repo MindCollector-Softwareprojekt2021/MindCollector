@@ -1,5 +1,5 @@
 <template>
-  <div class="notizen">
+  <v-container>
     <div>
       <div><h1>Meine Notizen</h1></div>
       <div class="btn-kat">
@@ -43,10 +43,8 @@
         </v-dialog>
       </div>
     </div>
-    <div id="expan">
-      <VExpansionPanel> </VExpansionPanel>
-    </div>
-  </div>
+    <VExpansionPanel> </VExpansionPanel>
+  </v-container>
 </template>
 <script>
 import VExpansionPanel from "../components/expansionPanel.vue";
