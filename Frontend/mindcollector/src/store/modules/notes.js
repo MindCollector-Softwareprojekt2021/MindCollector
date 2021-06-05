@@ -23,6 +23,14 @@ const actions = {
 
     //commit("createNote", note);
   },
+  async createImageNote({ commit }, note) {
+    await Api().post("/bildNotiz", note, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    //commit("createNote", note);
+  },
   async deleteNote({ commit }, note) {
     let delN = {
       EINTRAG_ID: note[0],
@@ -109,6 +117,7 @@ const mutations = {
   LogOut(state) {
     state.username = null;
     state.notes = [];
+    state.selectedKat = null;
   },
 };
 

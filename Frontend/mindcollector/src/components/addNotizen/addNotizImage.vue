@@ -32,9 +32,8 @@
           :rules="[required('Text'), maxLength('Text', 500)]"
         ></v-textarea>
         <v-file-input
-          v-model="file"
+          v-model="note.EINTRAG_BILD"
           show-size
-          @change="handleImage"
           accept="image/png, image/jpeg, image/bmp"
           prepend-icon="mdi-camera"
           :rules="[checkImage('Titel')]"
@@ -63,7 +62,7 @@ export default {
       note: {
         EINTRAG_TITEL: "",
         EINTRAG_BESCHREIBUNG: "",
-        EINTRAG_BILD: "",
+        EINTRAG_BILD: null,
       },
       file: null,
       enabled: false,
@@ -78,20 +77,23 @@ export default {
       var reader = new FileReader();
       reader.readAsDataURL(fileObject);
       reader.onload = () => {
-        this.note.EINTRAG_BILD = reader.result;
+        this.note.EINTRAG_BILD;
+        //this.note.EINTRAG_BILD = reader.result;
       };
       reader.onerror = function(error) {
         console.log("Error: ", error);
       };
     },
     async createNote() {
-      let neueNotiz = {
-        USERNAME: this.$store.getters.getUsername,
-        KATEGORIE_ID: this.kat[0],
-        EINTRAG: this.note,
-      };
-      console.log(neueNotiz);
-      await this.$store.dispatch("createNote", neueNotiz);
+      let formData = new FormData();
+
+      formData.append("EINTRAG_BILD", this.note.EINTRAG_BILD);
+      formData.append("USERNAME", this.$store.getters.getUsername);
+      formData.append("KATEGORIE_ID", this.kat[0]);
+      formData.append("EINTRAG_TITEL", this.note.EINTRAG_TITEL);
+      formData.append("EINTRAG_BESCHREIBUNG", this.note.EINTRAG_BESCHREIBUNG);
+
+      await this.$store.dispatch("createImageNote", formData);
       this.$router.push("/meine-notizen");
     },
   },

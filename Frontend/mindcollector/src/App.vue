@@ -13,7 +13,7 @@
       <router-view></router-view>
     </v-main>
 
-    <v-footer color="primary lighten-1" padless app>
+    <v-footer color="primary lighten-1" padless app absolute>
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
@@ -61,14 +61,14 @@ export default {
   },
 };
 </script>
-
-<style scoped>
+<style>
 * {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
+</style>
+<style scoped>
 #footer {
   color: white;
   text-align: center;

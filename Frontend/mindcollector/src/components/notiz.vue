@@ -85,7 +85,7 @@
         </span>
         <!--Anzeigen Button -->
         <span>
-          <v-dialog v-model="dialogAnzeige" max-width="800px">
+          <v-dialog v-model="dialogAnzeige" width="unset">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
                 Anzeigen
@@ -231,7 +231,7 @@ $imgHeight: 200px;
   text-align: center;
   margin: auto;
 }
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 900px) {
   .v-cardtext img {
     /*float: right;*/
     max-height: $imgHeight;

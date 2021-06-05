@@ -1,0 +1,18 @@
+{
+    "KATEGORIE_ID": 52, 
+    "KATEGORIE_TITEL": "Test123", 
+    "EINTRAG": [{"EINTRAG_ID": 43, 
+    "EINTRAG_TITEL": "test", 
+    "EINTRAG_BESCHREIBUNG": "tes", 
+    "EINTRAG_BILD": []
+}]}
+{
+    "KATEGORIE_ID": 71,
+    "KATEGORIE_TITEL": "test",
+    "EINTRAG": []
+}
+{
+    "KATEGORIE_ID": 72, 
+    "KATEGORIE_TITEL": "test2", 
+    "EINTRAG": []
+}
