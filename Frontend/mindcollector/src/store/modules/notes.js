@@ -31,6 +31,14 @@ const actions = {
     });
     //commit("createNote", note);
   },
+  async createAudioNote({ commit }, note) {
+    await Api().post("/audioNotiz", note, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    //commit("createNote", note);
+  },
   async deleteNote({ commit }, note) {
     let delN = {
       EINTRAG_ID: note[0],

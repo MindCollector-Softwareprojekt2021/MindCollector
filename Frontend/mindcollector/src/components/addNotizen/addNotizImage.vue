@@ -34,7 +34,8 @@
         <v-file-input
           v-model="note.EINTRAG_BILD"
           show-size
-          accept="image/png, image/jpeg, image/bmp"
+          accept="image/png, image/jpeg"
+          loading
           prepend-icon="mdi-camera"
           :rules="[checkImage('Titel')]"
         ></v-file-input>

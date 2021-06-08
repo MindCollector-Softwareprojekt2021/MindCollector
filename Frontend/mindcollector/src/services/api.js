@@ -6,11 +6,3 @@ export default () => {
     withCredentials: false,
   });
 };
-
-/*
-export default () => {
-  return axios.create({
-    baseURL: "https://mezzox.pythonanywhere.com",
-    withCredentials: false,
-  });
-};*/
