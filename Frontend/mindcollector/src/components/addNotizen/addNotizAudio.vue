@@ -1,6 +1,12 @@
 <template>
   <v-container>
     <h1>Audio Notiz hinzufügen</h1>
+    <v-text-field
+      v-model="kat[1]"
+      label="Kategorie"
+      outlined
+      disabled
+    ></v-text-field>
     <audio-recorder
       v-if="showRecorder"
       upload-url="https://mccurly.pythonanywhere.com/api/audioNotiz"
@@ -23,6 +29,7 @@
 </template>
 
 <script>
+import validations from "@/utils/validations";
 export default {
   name: "app",
   data() {
@@ -32,6 +39,12 @@ export default {
       headers: {
         "X-Custom-Header": "some data",
       },
+      valid: false,
+      kat: this.$store.getters.getSelectedKat,
+      note: {
+        EINTRAG_TITEL: "",
+      },
+      ...validations,
     };
   },
   methods: {

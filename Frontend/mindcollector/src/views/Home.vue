@@ -118,7 +118,8 @@ export default {
 
 <style scoped>
 .main {
-  background: url(../assets/background.jpg);
+  /*background: url(../assets/background.jpg);*/
+  background-color: rgb(243, 235, 224);
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -131,7 +132,7 @@ section {
 }
 .containerCard {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.664);
+  /*background-color: rgba(255, 255, 255, 0.664);*/
   margin: 0 50px;
 }
 .imgContainer {

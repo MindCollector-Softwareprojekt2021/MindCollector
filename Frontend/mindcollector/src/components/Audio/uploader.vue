@@ -15,6 +15,13 @@ import IconButton from "./icon-button";
 import UploaderPropsMixin from "@/mixins/uploader-props";
 
 export default {
+  data() {
+    return {
+      kat: this.$store.getters.getSelectedKat,
+      username: this.$store.getters.getUsername,
+      timestamp: "",
+    };
+  },
   mixins: [UploaderPropsMixin],
   props: {
     record: { type: Object },
@@ -22,24 +29,49 @@ export default {
   components: {
     IconButton,
   },
+  created() {
+    setInterval(this.getNow, 1000);
+  },
   methods: {
+    getNow: function() {
+      const today = new Date();
+      const date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      const time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date + " " + time;
+      this.timestamp = dateTime;
+    },
     async upload() {
       if (!this.record.url) {
         return;
       }
+      try {
+        this.$eventBus.$emit("start-upload");
 
-      this.$eventBus.$emit("start-upload");
+        const data = new FormData();
+        console.log(this.record.blob);
+        data.append("AUDIO", this.record.blob);
+        data.append("USERNAME", this.username);
+        data.append("KATEGORIE_ID", this.kat[0]);
+        data.append("EINTRAG_TITEL", "Audio " + this.timestamp);
+        await this.$store.dispatch("createAudioNote", data);
+        this.$eventBus.$emit("end-upload", {
+          status: "success",
+          response: "",
+        });
 
-      const data = new FormData();
-      console.log(this.record);
-      data.append("AUDIO", this.record);
-      data.append("USERNAME", this.$store.getters.getUsername);
-      data.append("KATEGORIE_ID", this.$store.getters.getSelectedKat[0]);
-      data.append("EINTRAG_TITEL", "Das ist nur ein Test");
-      data.append("EINTRAG_BESCHREIBUNG", "");
-      console.log(data);
-      await this.$store.dispatch("createAudioNote", data);
-      this.$router.push("/meine-notizen");
+        this.$router.push("/meine-notizen");
+      } catch (error) {
+        this.$eventBus.$emit("end-upload", {
+          status: "fail",
+          response: error,
+        });
+      }
 
       /*
       const headers = Object.assign(this.headers, {});
