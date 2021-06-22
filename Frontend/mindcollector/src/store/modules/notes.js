@@ -48,7 +48,6 @@ const actions = {
     commit("deleteNote", note);
   },
   async updateNote({ commit }, note) {
-    console.log(note);
     await Api().put("/notiz", note);
   },
   async createKategorie({ commit }, kat) {
@@ -59,7 +58,6 @@ const actions = {
     let delK = {
       KATEGORIE_ID: kat,
     };
-    console.log(delK);
     await Api().post("/deleteKategorie", delK);
 
     commit("deleteKat", kat);
@@ -100,11 +98,6 @@ const mutations = {
           .indexOf(note[0]),
         1
       );
-    console.log(
-      state.notes.filter(function(chain) {
-        return chain.KATEGORIE_ID === note[1];
-      })[0].EINTRAG.length
-    );
   },
   deleteKat(state, kat) {
     state.notes.splice(

@@ -4,7 +4,7 @@
     <v-form v-model="valid">
       <v-col>
         <v-text-field
-          v-model="kat"
+          v-model="kat[1]"
           label="Kategorie"
           outlined
           disabled
@@ -28,8 +28,8 @@
           outlined
           label="Text"
           v-if="enabled"
-          counter="500"
-          :rules="[required('Text'), maxLength('Text', 500)]"
+          counter="2500"
+          :rules="[required('Text'), maxLength('Text', 2500)]"
         ></v-textarea>
         <v-file-input
           v-model="note.EINTRAG_BILD"

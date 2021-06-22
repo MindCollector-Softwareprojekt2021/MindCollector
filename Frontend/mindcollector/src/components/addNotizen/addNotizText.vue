@@ -17,9 +17,9 @@
         <v-textarea
           v-model="note.EINTRAG_BESCHREIBUNG"
           outlined
-          counter="500"
+          counter="2500"
           label="Text"
-          :rules="[required('Text'), maxLength('Text', 255)]"
+          :rules="[required('Text'), maxLength('Text', 2500)]"
         />
       </v-col>
       <v-col>

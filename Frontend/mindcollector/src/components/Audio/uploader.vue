@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       kat: this.$store.getters.getSelectedKat,
-      username: this.$store.getters.getUsername,
       timestamp: "",
     };
   },
@@ -54,9 +53,8 @@ export default {
         this.$eventBus.$emit("start-upload");
 
         const data = new FormData();
-        console.log(this.record.blob);
+
         data.append("AUDIO", this.record.blob);
-        data.append("USERNAME", this.username);
         data.append("KATEGORIE_ID", this.kat[0]);
         data.append("EINTRAG_TITEL", "Audio " + this.timestamp);
         await this.$store.dispatch("createAudioNote", data);
@@ -72,30 +70,6 @@ export default {
           response: error,
         });
       }
-
-      /*
-      const headers = Object.assign(this.headers, {});
-      headers[
-        "Content-Type"
-      ] = `multipart/form-data; boundary=${data._boundary}`;
-
-
-
-      this.$http
-        .post(this.uploadUrl, data, { headers: headers })
-        .then((resp) => {
-          this.$eventBus.$emit("end-upload", {
-            status: "success",
-            response: resp,
-          });
-        })
-        .catch((error) => {
-          this.$eventBus.$emit("end-upload", {
-            status: "fail",
-            response: error,
-          });
-        });
-        */
     },
   },
 };
