@@ -25,26 +25,41 @@
               </v-card-title>
               <v-spacer></v-spacer>
               <v-card-text>
-                <v-text-field
-                  v-model="titel"
-                  label="Titel"
-                  outlined
-                  clearable
-                  required
-                ></v-text-field>
-                <v-textarea
-                  outlined
-                  label="Text"
-                  v-model="text"
-                  required
-                ></v-textarea>
+                <v-form v-model="valid">
+                  <v-text-field
+                    v-model="titel"
+                    label="Titel"
+                    outlined
+                    clearable
+                    required
+                    counter="50"
+                    :rules="[
+                      required('Titel'),
+                      minLength('Titel', 3),
+                      maxLength('Titel', 50),
+                    ]"
+                  ></v-text-field>
+                  <v-textarea
+                    outlined
+                    label="Text"
+                    v-model="text"
+                    required
+                    counter="2500"
+                    :rules="[required('Text'), maxLength('Text', 2500)]"
+                  ></v-textarea>
+                </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="orange darken-1" dark @click="abbruch()">
                   Abbrechen
                 </v-btn>
-                <v-btn color="green darken-1" dark @click="editNote()">
+                <v-btn
+                  color="green darken-1"
+                  dark
+                  @click="editNote()"
+                  :disabled="!valid"
+                >
                   Speichern
                 </v-btn>
               </v-card-actions>
@@ -122,15 +137,18 @@
 </template>
 
 <script>
+import validations from "@/utils/validations";
 export default {
   data() {
     return {
+      valid: false,
       dialogDelete: false,
       dialogAnzeige: false,
       dialogEdit: false,
       titel: this.notiz.EINTRAG_TITEL,
       text: this.notiz.EINTRAG_BESCHREIBUNG,
       img: this.notiz.EINTRAG_BILD,
+      ...validations,
     };
   },
   computed: {

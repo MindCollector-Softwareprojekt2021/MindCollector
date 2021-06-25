@@ -35,7 +35,6 @@
           v-model="note.EINTRAG_BILD"
           show-size
           accept="image/png, image/jpeg"
-          loading
           prepend-icon="mdi-camera"
           :rules="[checkImage('Titel')]"
         ></v-file-input>
@@ -67,6 +66,7 @@ export default {
       },
       file: null,
       enabled: false,
+
       ...validations,
     };
   },
@@ -95,7 +95,9 @@ export default {
       formData.append("EINTRAG_BESCHREIBUNG", this.note.EINTRAG_BESCHREIBUNG);
 
       await this.$store.dispatch("createImageNote", formData);
+
       this.$router.push("/meine-notizen");
+      this.$store.snackbar = true;
     },
   },
 };

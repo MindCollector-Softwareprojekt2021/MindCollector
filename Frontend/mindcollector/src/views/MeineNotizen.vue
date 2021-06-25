@@ -44,6 +44,15 @@
       </div>
     </div>
     <VExpansionPanel> </VExpansionPanel>
+    <v-snackbar v-model="snackbar" :timeout="timeout">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 <script>
@@ -61,6 +70,10 @@ export default {
       ...validations,
       valid: false,
       kategorieName: "",
+      snackbar: this.$store.snackbar,
+      text:
+        "Die Analyse des Bildes dauert etwas. Das Bild wird nach der Analyse erst angezeigt",
+      timeout: 3000,
     };
   },
   mounted() {

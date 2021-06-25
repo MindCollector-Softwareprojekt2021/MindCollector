@@ -4,6 +4,7 @@ const state = {
   selectedKat: null,
   notes: [],
   username: null,
+  snackbar: false,
 };
 
 const getters = {
@@ -24,7 +25,7 @@ const actions = {
     //commit("createNote", note);
   },
   async createImageNote({ commit }, note) {
-    await Api().post("/bildNotiz", note, {
+    Api().post("/bildNotiz", note, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
