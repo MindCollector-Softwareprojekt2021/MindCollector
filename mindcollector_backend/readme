@@ -1,0 +1,3 @@
+Das Backend befindet sich auf www.pythonanywhere.com und die Library für die Bild-/Audioanalyse
+befinden sich nicht in Github, da diese zu groß für Github waren und keine weiteren Veränderungen inne haben.
+Die Anwendung der Analyse, so wie das "Herz" des Backends, befinden sich in mind/views.py
