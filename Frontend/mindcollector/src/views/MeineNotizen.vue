@@ -71,8 +71,7 @@ export default {
       valid: false,
       kategorieName: "",
       snackbar: this.$store.snackbar,
-      text:
-        "Die Analyse des Bildes dauert etwas. Das Bild wird nach der Analyse erst angezeigt",
+      text: "Das Hochladen des Bildes dauert einen Moment!",
       timeout: 3000,
     };
   },
