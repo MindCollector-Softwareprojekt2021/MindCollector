@@ -48,7 +48,7 @@
       {{ text }}
 
       <template v-slot:action="{ attrs }">
-        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+        <v-btn color="blue" text v-bind="attrs" @click="snack()">
           Close
         </v-btn>
       </template>
@@ -91,6 +91,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    snack() {
+      this.snackbar = false;
+      this.$store.snackbar = false;
     },
   },
 };
